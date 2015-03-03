@@ -1,0 +1,29 @@
+{
+	"name" : "amekusa/wp-vagrantize",
+	"authors" : [{
+			"name" : "amekusa",
+			"email" : "post@amekusa.com"
+		}
+	],
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "git@bitbucket.org:amekusa/wp-vagrantize.git"
+		}
+	],
+	"require" : {
+		"php" : ">=5.3.3"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"amekusa\\WPELib\\" : "src/"
+		},
+		"files" : [
+			"wp-vagrantize.php"
+		]
+	},
+	"type" : "wordpress-plugin",
+	"keywords" : [
+		"wordpress",
+		"vagrant"
+	]
+}
