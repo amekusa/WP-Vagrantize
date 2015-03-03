@@ -1,4 +1,6 @@
 <?php
+namespace amekusa\wp_vagrantize;
+
 /*
 Plugin Name: WP Vagrantize
 Version: 0.1-alpha
@@ -10,3 +12,7 @@ Text Domain: wp-vagrantize
 Domain Path: /languages
 */
 
+add_action('init', function () { // The entry point
+	include __DIR__.'/vendor/autoload.php';
+	
+});
