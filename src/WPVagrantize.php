@@ -1,14 +1,15 @@
 <?php
-namespace amekusa\wp_vagrantize;
+namespace amekusa\WPVagrantize;
 
 class WPVagrantize {
 	private static $instance;
 	
-	public static function instance() {
-		if (!isset(static::$instance)) $instance
+	public static final function instance() {
+		if (!isset(static::$instance)) static::$instance = new static();
+		return static::$instance;
 	}
 	
-	public function __construct() {
+	private function __construct() {
 		
 	}
 }
