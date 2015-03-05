@@ -5,17 +5,12 @@
 			"email" : "post@amekusa.com"
 		}
 	],
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "git@bitbucket.org:amekusa/wp-vagrantize.git"
-		}
-	],
 	"require" : {
 		"php" : ">=5.3.3"
 	},
 	"autoload" : {
 		"psr-4" : {
-			"amekusa\\WPELib\\" : "src/"
+			"amekusa\\WPVagrantize\\" : "src/"
 		},
 		"files" : [
 			"wp-vagrantize.php"
