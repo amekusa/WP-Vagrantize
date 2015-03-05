@@ -5,8 +5,14 @@
 			"email" : "post@amekusa.com"
 		}
 	],
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/amekusa/ReWP.git"
+		}
+	],
 	"require" : {
-		"php" : ">=5.3.3"
+		"php" : ">=5.3.3",
+		"amekusa/ReWP" : "dev-master"
 	},
 	"autoload" : {
 		"psr-4" : {
