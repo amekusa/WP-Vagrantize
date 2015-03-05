@@ -1,5 +1,5 @@
 <?php
-namespace amekusa\wp_vagrantize;
+namespace amekusa\WPVagrantize;
 
 /*
 Plugin Name: WP Vagrantize
