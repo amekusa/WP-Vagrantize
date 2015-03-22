@@ -18,6 +18,8 @@ class WPVagrantize {
 
 	private function __construct() {
 		$this->menu = new Menu();
-		$this->prov = new ReWP(__DIR__ . '/../vendor/amekusa/ReWP');
+		//$this->prov = new ReWP(__DIR__ . '/../vendor/amekusa/ReWP');
+		//$this->prov->exportData();
+		//$this->prov->exportDB();
 	}
 }
