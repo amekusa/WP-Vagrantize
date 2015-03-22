@@ -13,7 +13,8 @@
 	"require" : {
 		"php" : ">=5.3.3",
 		"amekusa/ReWP" : "dev-master",
-		"mustangostang/spyc" : ">=0.5.1"
+		"mustangostang/spyc" : ">=0.5.1",
+		"ifsnop/mysqldump-php" : "1.*"
 	},
 	"autoload" : {
 		"psr-4" : {
