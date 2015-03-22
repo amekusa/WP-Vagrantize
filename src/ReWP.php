@@ -78,13 +78,13 @@ class ReWP {
 				'mysql',
 				array (
 					'add-drop-table' => true,
-					'single-transaction' => true,
-					'lock-tables' => false
+					'single-transaction' => false, // This requires SUPER privilege (@see https://github.com/ifsnop/mysqldump-php/issues/54)
+					'lock-tables' => true          // So we must use this instead
 				)
 			); // @formatter:on
 			$dump->start($this->path . '/' . $this->data['import_sql_file']);
 		} catch (\Exception $e) {
-			throw new \RuntimeException('mysqldump-php error: ' . $e->getMessage());
+			throw $e;
 		}
 
 		@ini_set('memory_limit', $memLim);
