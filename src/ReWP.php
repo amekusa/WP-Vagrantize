@@ -29,8 +29,8 @@ class ReWP {
 		return $this->parser;
 	}
 
-	public function updateData() {
-		$data = array ( // @formatter:off
+	public function getSiteData() {
+		$r = array ( // @formatter:off
 			'hostname_old' => gethostname(),
 			'version' => get_bloginfo('version'),
 			'lang' => get_bloginfo('language'),
@@ -43,9 +43,21 @@ class ReWP {
 			'db_name' => DB_NAME,
 			'db_user' => DB_USER,
 			'db_pass' => DB_PASSWORD,
+			'plugins' => get_option('active_plugins'),
+			'theme' => wp_get_theme(),
 			'import_sql' => $this->getUser()->has_cap('import'),
 		); // @formatter:on
+		return $r;
+	}
+
+	public function updateData() {
+		$data = $this->getSiteData();
 		$this->data = array_merge($this->data, $data);
+		$this->sanitizeData();
+	}
+	
+	public function sanitizeData() {
+		
 	}
 
 	public function export() {
