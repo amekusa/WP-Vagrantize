@@ -8,7 +8,6 @@ class ReWP {
 
 	public function __construct($xPath = null) {
 		$this->path = $xPath ? $xPath : __DIR__;
-		$this->setup();
 	}
 
 	public function setup() {
