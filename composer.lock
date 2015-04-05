@@ -1,0 +1,157 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "a616edaa8e8132d64fd84a1ff55cb753",
+    "packages": [
+        {
+            "name": "amekusa/ReWP",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amekusa/ReWP.git",
+                "reference": "fd916725e604aa8320f0b10dcd219c084fde749c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amekusa/ReWP/zipball/fd916725e604aa8320f0b10dcd219c084fde749c",
+                "reference": "fd916725e604aa8320f0b10dcd219c084fde749c",
+                "shasum": ""
+            },
+            "type": "vagrant-provisioner",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "amekusa",
+                    "email": "post@amekusa.com"
+                }
+            ],
+            "description": "A smart way to rebuild you WordPress site into local",
+            "homepage": "https://github.com/amekusa/ReWP",
+            "keywords": [
+                "vagrant",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/amekusa/ReWP/tree/v1.2.0",
+                "issues": "https://github.com/amekusa/ReWP/issues"
+            },
+            "time": "2015-03-12 08:40:25"
+        },
+        {
+            "name": "ifsnop/mysqldump-php",
+            "version": "v1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ifsnop/mysqldump-php.git",
+                "reference": "1ef0dc4032eb21d1372819b65eff49719a3127fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ifsnop/mysqldump-php/zipball/1ef0dc4032eb21d1372819b65eff49719a3127fd",
+                "reference": "1ef0dc4032eb21d1372819b65eff49719a3127fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ifsnop\\": "src/Ifsnop/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Diego Torres",
+                    "homepage": "https://github.com/ifsnop",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a php version of linux's mysqldump in terminal \"$ mysqldump -u username -p...\"",
+            "homepage": "https://github.com/ifsnop/mysqldump-php",
+            "keywords": [
+                "backup",
+                "database",
+                "dump",
+                "export",
+                "mysql",
+                "mysqldump",
+                "pdo",
+                "sqlite"
+            ],
+            "time": "2015-02-05 16:56:40"
+        },
+        {
+            "name": "mustangostang/spyc",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mustangostang/spyc.git",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Spyc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "mustangostang",
+                    "email": "vlad.andersen@gmail.com"
+                }
+            ],
+            "description": "A simple YAML loader/dumper class for PHP",
+            "homepage": "https://github.com/mustangostang/spyc/",
+            "keywords": [
+                "spyc",
+                "yaml",
+                "yml"
+            ],
+            "time": "2013-02-21 10:52:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "amekusa/rewp": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.3.3"
+    },
+    "platform-dev": []
+}
