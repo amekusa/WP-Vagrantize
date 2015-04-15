@@ -24,9 +24,14 @@ class MenuScreen {
 
 			add_action('admin_enqueue_scripts', function () use($getRewpData) {
 				wp_enqueue_script( // @formatter:off
+					'transparency',
+					WP_VAGRANTIZE_URL . BOWER_DIR . '/transparency/transparency.min.js',
+					array ('jquery')
+				); // @formatter:on
+				wp_enqueue_script( // @formatter:off
 					'wp-vagrantize-menu',
 					WP_VAGRANTIZE_URL . '/scripts/menu.wp-vagrantize.jquery.js',
-					array ('jquery')
+					array ('jquery', 'transparency')
 				); // @formatter:on
 				wp_localize_script( // @formatter:off
 					'wp-vagrantize-menu',
