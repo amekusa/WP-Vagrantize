@@ -25,7 +25,7 @@ class MenuScreen {
 			add_action('admin_enqueue_scripts', function () use($getRewpData) {
 				wp_enqueue_script( // @formatter:off
 					'wp-vagrantize-menu',
-					plugins_url('../scripts/menu.wp-vagrantize.jquery.js', __FILE__),
+					WP_VAGRANTIZE_URL . '/scripts/menu.wp-vagrantize.jquery.js',
 					array ('jquery')
 				); // @formatter:on
 				wp_localize_script( // @formatter:off
