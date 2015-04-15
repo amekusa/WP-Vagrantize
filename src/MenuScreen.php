@@ -13,7 +13,7 @@ class MenuScreen {
 		$this->menu = $xMenu;
 
 		$getRewpData = new AjaxAction('get_rewp_data', function () {
-			$rewp = new ReWP(WP_VAGRANTIZE_HOME . '/vendor/amekusa/ReWP');
+			$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
 			$rewp->setup();
 			$data = $rewp->getData();
 			wp_send_json($data);
