@@ -1,0 +1,21 @@
+{
+  "name": "wp-vagrantize",
+  "version": "0.1.0",
+  "description": "description",
+  "main": "wp-vagrantize.php",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "license": "GPL",
+  "homepage": "amekusa.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
