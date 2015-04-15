@@ -9,4 +9,5 @@
  Text Domain: wp-vagrantize
  Domain Path: /languages
  */
+if (!defined('WP_VAGRANTIZE_HOME')) define('WP_VAGRANTIZE_HOME', __DIR__);
 require_once __DIR__ . '/src/main.php';

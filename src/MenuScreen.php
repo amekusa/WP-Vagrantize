@@ -12,15 +12,17 @@ class MenuScreen {
 	private function __construct(Menu $xMenu) {
 		$this->menu = $xMenu;
 
-		add_action('load-' . $this->getId(), function () {
-			$getRewpData = new AjaxAction('get-rewp-data', function () {
-				$rewp = new ReWP();
-				$data = $rewp->getData();
-				wp_send_json($data);
-			});
-			$getRewpData->register();
+		$getRewpData = new AjaxAction('get_rewp_data', function () {
+			$rewp = new ReWP(WP_VAGRANTIZE_HOME . '/vendor/amekusa/ReWP');
+			$rewp->setup();
+			$data = $rewp->getData();
+			wp_send_json($data);
+		});
+		$getRewpData->register();
 
-			add_action('admin_enqueue_scripts', function () {
+		add_action('load-' . $this->getId(), function () use($getRewpData) {
+
+			add_action('admin_enqueue_scripts', function () use($getRewpData) {
 				wp_enqueue_script( // @formatter:off
 					'wp-vagrantize-menu',
 					plugins_url('../scripts/menu.wp-vagrantize.jquery.js', __FILE__),
@@ -28,8 +30,12 @@ class MenuScreen {
 				); // @formatter:on
 				wp_localize_script( // @formatter:off
 					'wp-vagrantize-menu',
-					'vars',
-					array ('alert' => __('YEAHHHHHH!!!', 'wp-vagrantize'))
+					'WPVagrantize',
+					array (
+						'url' => admin_url('admin-ajax.php'),
+						'action' => $getRewpData->getName(),
+						'nonce' => $getRewpData->getNonce()
+					)
 				); // @formatter:on
 			});
 		});
@@ -45,7 +51,6 @@ class MenuScreen {
 	}
 
 	public function render() {
-		echo plugin_dir_path(__FILE__);
 		ob_start(); // @formatter:off ?>
 
 <h2>WP Vagrantize</h2>

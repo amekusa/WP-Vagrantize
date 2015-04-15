@@ -55,9 +55,8 @@ class ReWP {
 		$this->data = array_merge($this->data, $data);
 		$this->sanitizeData();
 	}
-	
+
 	public function sanitizeData() {
-		
 	}
 
 	public function export() {

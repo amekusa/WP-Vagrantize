@@ -27,8 +27,11 @@ class AjaxAction {
 	}
 
 	private function preAction() {
-		check_ajax_referer($this->name);
-		nocache_headers();
+		check_ajax_referer($this->name, 'nonce');
+	}
+
+	public final function getName() {
+		return $this->name;
 	}
 
 	public final function getNonce() {

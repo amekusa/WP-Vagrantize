@@ -6,11 +6,16 @@ jQuery(document).ready(function($) {
 			$.error("WP Vagrantize: DOM#rewp-data is not found");
 
 		$.ajax({
-			url : $(this).attr("action"),
-			type : $(this).attr("method"),
-			data : $(this).serialize()
+			url : WPVagrantize.url,
+			type : "POST",
+			cache : false,
+			data : {
+				nonce : WPVagrantize.nonce,
+				action : WPVagrantize.action
+			}
 		}).done(function(response) {
 			console.log(response);
+			alert(response);
 		});
 	}();
 });
