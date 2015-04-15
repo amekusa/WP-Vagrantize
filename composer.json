@@ -31,5 +31,8 @@
 	"keywords" : [
 		"wordpress",
 		"vagrant"
-	]
+	],
+	"config" : {
+		"vendor-dir" : "lib/composer"
+	}
 }
