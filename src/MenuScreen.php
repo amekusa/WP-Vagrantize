@@ -13,7 +13,7 @@ class MenuScreen {
 		$this->menu = $xMenu;
 
 		$getRewpData = new AjaxAction('get_rewp_data', function () {
-			$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
+			$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . 'amekusa/ReWP');
 			$rewp->setup();
 			$data = $rewp->getData();
 			wp_send_json($data);
@@ -25,12 +25,12 @@ class MenuScreen {
 			add_action('admin_enqueue_scripts', function () use($getRewpData) {
 				wp_enqueue_script( // @formatter:off
 					'transparency',
-					WP_VAGRANTIZE_URL . BOWER_DIR . '/transparency/transparency.min.js',
+					WP_VAGRANTIZE_URL . BOWER_DIR . 'transparency/dist/transparency.min.js',
 					array ('jquery')
 				); // @formatter:on
 				wp_enqueue_script( // @formatter:off
 					'wp-vagrantize-menu',
-					WP_VAGRANTIZE_URL . '/scripts/menu.wp-vagrantize.jquery.js',
+					WP_VAGRANTIZE_URL . 'scripts/menu.wp-vagrantize.jquery.js',
 					array ('jquery', 'transparency')
 				); // @formatter:on
 				wp_localize_script( // @formatter:off
