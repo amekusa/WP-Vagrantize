@@ -6,12 +6,12 @@ jQuery(document).ready(function($) {
 			$.error("WP Vagrantize: DOM:#rewp-data-table is not found");
 
 		var request = $.ajax({
-			url : WPVagrantize.url,
+			url : WPVagrantize.ajaxUrl,
 			//method : "POST", // jQuery >= 1.9.0
 			  type : "POST",   // jQuery <  1.9.0
 			data : {
-				nonce : WPVagrantize.nonce,
-				action : WPVagrantize.action
+				action : 'get_rewp_data',
+				nonce : WPVagrantize.actions.get_rewp_data.nonce
 			},
 			context : table,
 			dataType : "json",
