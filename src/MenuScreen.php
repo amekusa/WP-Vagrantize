@@ -60,15 +60,17 @@ class MenuScreen {
 
 <h2>WP Vagrantize</h2>
 <h3>ReWP</h3>
-<div id="rewp-data"></div>
-<table class="widefat">
-	<tbody>
-		<template id="rewp-data-row">
+<table id="rewp-data-table" class="widefat">
+	<thead>
 		<tr>
-			<th></th>
-			<td></td>
+			<th>Setting</th>
+			<td style="border-bottom:1px solid #e1e1e1; color:#333">Value</td>
 		</tr>
-		</template>
+	</thead>
+	<tbody class="dummy">
+		<tr>
+			<td colspan="2">Loading ...</td>
+		</tr>
 	</tbody>
 </table>
 

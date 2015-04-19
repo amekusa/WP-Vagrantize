@@ -1,21 +1,39 @@
 jQuery(document).ready(function($) {
 
 	!function() {
-		var $injectee = $("#rewp-data");
-		if (!$injectee.length)
-			$.error("WP Vagrantize: DOM#rewp-data is not found");
+		var $table = $("#rewp-data-table");
+		if (!$table.length)
+			$.error("WP Vagrantize: DOM:#rewp-data-table is not found");
 
 		$.ajax({
 			url : WPVagrantize.url,
-			type : "POST",
-			cache : false,
+			//method : "POST", // jQuery >= 1.9.0
+			  type : "POST",   // jQuery <  1.9.0
 			data : {
 				nonce : WPVagrantize.nonce,
 				action : WPVagrantize.action
-			}
-		}).done(function(response) {
-			console.log(response);
-			alert(response);
+			},
+			context : $table,
+			dataType : "json",
+			cache : false
+		})
+		.fail(function() {
+			this.addClass("error");
+		})
+		.done(function(data) {
+			body = $("<tbody>");
+			$.each(data, function(i, iRow) {
+				row = $("<tr>");
+				row.append($("<th>", {
+					text : i
+				}));
+				row.append($("<td>", {
+					text : iRow
+				}));
+				body.append(row);
+			});
+			this.find(".dummy").remove();
+			this.append(body);
 		});
 	}();
 });
