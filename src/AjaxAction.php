@@ -27,7 +27,10 @@ class AjaxAction {
 	}
 
 	private function preAction() {
-		check_ajax_referer($this->name, 'nonce');
+		if (!check_ajax_referer($this->name, 'nonce', false)) {
+			header('HTTP/1.1 500 Internal Server Error');
+			die();
+		}
 	}
 
 	public final function getName() {

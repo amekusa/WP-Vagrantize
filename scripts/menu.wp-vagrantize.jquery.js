@@ -1,11 +1,11 @@
 jQuery(document).ready(function($) {
 
 	!function() {
-		var $table = $("#rewp-data-table");
-		if (!$table.length)
+		var table = $("#rewp-data-table");
+		if (!table.length)
 			$.error("WP Vagrantize: DOM:#rewp-data-table is not found");
 
-		$.ajax({
+		var request = $.ajax({
 			url : WPVagrantize.url,
 			//method : "POST", // jQuery >= 1.9.0
 			  type : "POST",   // jQuery <  1.9.0
@@ -13,27 +13,28 @@ jQuery(document).ready(function($) {
 				nonce : WPVagrantize.nonce,
 				action : WPVagrantize.action
 			},
-			context : $table,
+			context : table,
 			dataType : "json",
 			cache : false
-		})
-		.fail(function() {
-			this.addClass("error");
-		})
-		.done(function(data) {
-			body = $("<tbody>");
-			$.each(data, function(i, iRow) {
-				row = $("<tr>");
-				row.append($("<th>", {
-					text : i
-				}));
-				row.append($("<td>", {
-					text : iRow
-				}));
-				body.append(row);
+		});
+
+		request.fail(function(request, status, error) {
+			var dom = this;
+			dom.empty();
+			dom.addClass("failed");
+		});
+
+		request.done(function(response) {
+			var dom = this;
+			dom.empty();
+
+			$.each(response.data, function(i, iRow) {
+				var row = $("<tr>")
+					.append($("<th>", { text : i }))
+					.append($("<td>", {	text : iRow }));
+
+				dom.append(row);
 			});
-			this.find(".dummy").remove();
-			this.append(body);
 		});
 	}();
 });

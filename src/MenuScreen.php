@@ -16,7 +16,7 @@ class MenuScreen {
 			$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . 'amekusa/ReWP');
 			$rewp->setup();
 			$data = $rewp->getData();
-			wp_send_json($data);
+			wp_send_json_success($data);
 		});
 		$getRewpData->register();
 
@@ -60,16 +60,16 @@ class MenuScreen {
 
 <h2>WP Vagrantize</h2>
 <h3>ReWP</h3>
-<table id="rewp-data-table" class="widefat">
+<table class="widefat">
 	<thead>
 		<tr>
 			<th>Setting</th>
 			<td style="border-bottom:1px solid #e1e1e1; color:#333">Value</td>
 		</tr>
 	</thead>
-	<tbody class="dummy">
+	<tbody id="rewp-data-table">
 		<tr>
-			<td colspan="2">Loading ...</td>
+			<td colspan="2"><?php _e('Loading …') ?></td>
 		</tr>
 	</tbody>
 </table>
