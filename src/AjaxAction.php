@@ -40,4 +40,12 @@ class AjaxAction {
 	public final function getNonce() {
 		return $this->nonce;
 	}
+
+	public function toData() {
+		$r = array (
+			'action' => $this->getName(),
+			'nonce' => $this->getNonce()
+		);
+		return $r;
+	}
 }

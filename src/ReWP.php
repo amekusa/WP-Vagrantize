@@ -4,29 +4,25 @@ namespace amekusa\WPVagrantize;
 use Ifsnop\Mysqldump\Mysqldump;
 
 class ReWP {
-	protected $path, $data, $user, $parser;
+	private $path;
+	private $parser;
+	private $user;
+	private $data;
 
 	public function __construct($xPath = null) {
 		$this->path = $xPath ? $xPath : __DIR__;
+		$this->parser = new \Spyc();
+		$this->init();
 	}
 
-	public function setup() {
-		$this->data = $this->getParser()->loadFile($this->path . '/provision/default.yml');
-		$this->updateData();
+	public function init() {
+		$this->user = wp_get_current_user();
+		$this->data = $this->parser->loadFile($this->path . '/provision/default.yml');
+		$this->setData($this->getSiteData());
 	}
 
 	public function getData() {
 		return $this->data;
-	}
-
-	protected function getUser() {
-		if (!isset($this->user)) $this->user = wp_get_current_user();
-		return $this->user;
-	}
-
-	protected function getParser() {
-		if (!isset($this->parser)) $this->parser = new \Spyc();
-		return $this->parser;
 	}
 
 	public function getSiteData() {
@@ -36,7 +32,7 @@ class ReWP {
 			'lang' => get_bloginfo('language'),
 			'title' => get_bloginfo('name'),
 			'multisite' => is_multisite(),
-			'admin_user' => $this->getUser()->user_login,
+			'admin_user' => $this->user->user_login,
 			'admin_pass' => '',
 			'db_prefix' => $GLOBALS['wpdb']->prefix,
 			'db_host' => DB_HOST,
@@ -45,33 +41,43 @@ class ReWP {
 			'db_pass' => DB_PASSWORD,
 			'plugins' => get_option('active_plugins'),
 			'theme' => wp_get_theme(),
-			'import_sql' => $this->getUser()->has_cap('import'),
+			'import_sql' => $this->user->has_cap('import'),
 		); // @formatter:on
 		return $r;
 	}
 
-	public function updateData() {
-		$data = $this->getSiteData();
-		$this->data = array_merge($this->data, $data);
-		$this->sanitizeData();
+	public function setData($xData) {
+		$data = $this->sanitizeData($xData);
+		$this->data = array_merge_recursive($this->data, $data);
+		$this->exportData();
 	}
 
-	public function sanitizeData() {
+	public function sanitizeData($xData) {
+		$r = array ();
+		foreach ($this->data as $i => $iData) {
+			if (!array_key_exists($i, $xData)) continue;
+			if ($xData[$i]) {
+				// TODO Abort if the type of $xData[$i] doesn't match for $iData
+			}
+			$r[$i] = $xData[$i];
+			unset($xData[$i]);
+		}
+		return $r;
 	}
 
 	public function export() {
-		if (!$this->getUser()->has_cap('edit_post')) throw new UserCapabilityException();
+		if (!$this->user->has_cap('edit_post')) throw new UserCapabilityException();
 	}
 
 	public function exportData() {
-		$dump = $this->getParser()->dump($this->data);
+		$dump = $this->parser->dump($this->data);
 		$file = fopen($this->path . '/site.yml', 'w');
 		fwrite($file, $dump);
 		return fclose($file);
 	}
 
 	public function exportDB() {
-		if (!$this->getUser()->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
+		if (!$this->user->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
 
 		$memLim = ini_get('memory_limit');
 		@ini_set('memory_limit', '2048M');

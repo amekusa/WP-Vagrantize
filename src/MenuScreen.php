@@ -12,18 +12,28 @@ class MenuScreen {
 
 	private function __construct(Menu $xMenu) {
 		$this->menu = $xMenu;
+
+		$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
+
 		$this->actions = array ( // @formatter:off
-			new AjaxAction('get_rewp_data', function () {
-				$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
-				$rewp->setup();
+			new AjaxAction('get_rewp_data', function () use($rewp) {
 				$data = $rewp->getData();
 				wp_send_json_success($data);
 			}),
-			new AjaxAction('reset_rewp_data', function () {
-				$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
-				$rewp->setup();
+			new AjaxAction('set_rewp_data', function () use($rewp) {
+				$newData = $_POST;
+				$rewp->setData($newData);
 				$data = $rewp->getData();
 				wp_send_json_success($data);
+			}),
+			new AjaxAction('reset_rewp_data', function () use($rewp) {
+				$rewp->init();
+				$data = $rewp->getData();
+				wp_send_json_success($data);
+			}),
+			new AjaxAction('export_db', function () use($rewp) {
+				$rewp->exportDB();
+				wp_send_json_success(array ('msg', 'Database exported.'));
 			})
 		); // @formatter:on
 		foreach ($this->actions as $iAct)
@@ -55,9 +65,7 @@ class MenuScreen {
 				'actions' => array ()
 			); // @formatter:on
 			foreach ($this->actions as $iAct) {
-				$vars['actions'][$iAct->getName()] = array ( // @formatter:off
-					'nonce' => $iAct->getNonce()
-				); // @formatter:on
+				$vars['actions'][$iAct->getName()] = $iAct->toData();
 			}
 			wp_localize_script('wp-vagrantize-menu', 'WPVagrantize', $vars);
 		});
