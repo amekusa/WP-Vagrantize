@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 	}();
 
 	function activateForm() {
-		var form = $('#rewp-settings-form');
+		var form = $('form#rewp-settings-form');
 		if (!form.length)
 			$.error('WP Vagrantize: DOM:' + form.selector + ' is not found');
 
@@ -60,27 +60,39 @@ jQuery(document).ready(function($) {
 		form.on('submit', function(ev) {
 			ev.preventDefault(); // Abort browser-native submit
 
-			var values = $(this).serializeArray();
-			console.log(values);
+			var submit = '';
+			var settings = {};
 
-			$.ajax({
-				url : WPVagrantize.ajaxUrl,
-				type : 'POST',
-				data : WPVagrantize.actions.set_rewp_data,
-				context : form,
-				dataType : 'json',
-				cache : false
-			})
-			.fail(function(request, status, error) {
-				var dom = this;
-				dom.addClass('failed');
-			})
-			.done(function(response) {
-				var dom = this;
-
-				$.each(response.data, function(i, iRow) {
-				});
+			var formData = $(this).serializeArray();
+			$.each(formData, function(i, iData) {
+				if (!iData.hasOwnProperty('name')) return;
+				if (iData.name == 'submit') submit = iData.value;
+				else settings[iData.name] = iData.value;
 			});
+
+			if (submit == 'save') {
+				$.ajax({
+					url : WPVagrantize.ajaxUrl,
+					type : 'POST',
+					data : $.extend(
+						WPVagrantize.actions.set_rewp_data,
+						{ data : settings }
+					),
+					context : form,
+					dataType : 'json',
+					cache : false
+				})
+				.fail(function(request, status, error) {
+					var dom = this;
+					dom.addClass('failed');
+				})
+				.done(function(response) {
+					var dom = this;
+
+					$.each(response.data, function(i, iRow) {
+					});
+				});
+			}
 		});
 	}
 });
