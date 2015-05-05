@@ -15,10 +15,6 @@
 				<tr>
 					<td colspan="2"><?php _e('Loading …') ?></td>
 				</tr>
-				<tr>
-					<th data-bind="key"></th>
-					<td data-bind="value"></td>
-				</tr>
 			</tbody>
 			<tfoot>
 				<tr>

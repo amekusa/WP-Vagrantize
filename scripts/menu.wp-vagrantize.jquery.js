@@ -7,8 +7,29 @@ jQuery(document).ready(function($) {
 
 		$.ajax({
 			url : WPVagrantize.ajaxUrl,
-			// method : 'POST', // jQuery >= 1.9.0
-			   type : 'POST',   // jQuery <  1.9.0
+			method : 'POST', // jQuery >= 1.9.0
+			type : 'POST',   // jQuery <  1.9.0
+			data : WPVagrantize.actions.render_rewp_settings_table,
+			context : table,
+			dataType : 'json',
+			cache : false
+		})
+		.fail(function(request, status, error) {
+			var dom = this;
+			dom.empty();
+			dom.addClass('failed');
+		})
+		.done(function(response) {
+			var dom = this;
+			dom.html(response.data);
+			activateForm();
+		});
+
+		/*
+		$.ajax({
+			url : WPVagrantize.ajaxUrl,
+			method : 'POST', // jQuery >= 1.9.0
+			type : 'POST',   // jQuery <  1.9.0
 			data : WPVagrantize.actions.get_rewp_data,
 			context : table,
 			dataType : 'json',
@@ -23,16 +44,17 @@ jQuery(document).ready(function($) {
 			var dom = this;
 			dom.empty();
 
-			$.each(response.data, function(i, iRow) {
+			$.each(response.data, function(i, iData) {
 				var row = $('<tr>')
 					.append($('<th>', { text : i }))
-					.append($('<td>', {	text : iRow }));
+					.append($('<td>', {	text : iData }));
 
 				dom.append(row);
 			});
 
 			activateForm();
 		});
+		*/
 	}();
 
 	function activateForm() {
@@ -73,6 +95,7 @@ jQuery(document).ready(function($) {
 			if (submit == 'save') {
 				$.ajax({
 					url : WPVagrantize.ajaxUrl,
+					method : 'POST',
 					type : 'POST',
 					data : $.extend(
 						WPVagrantize.actions.set_rewp_data,

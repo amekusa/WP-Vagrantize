@@ -21,6 +21,10 @@ class ReWP {
 		$this->setData($this->getSiteData());
 	}
 
+	public function getParser() {
+		return $this->parser;
+	}
+
 	public function getData() {
 		return $this->data;
 	}
@@ -48,7 +52,7 @@ class ReWP {
 
 	public function setData($xData) {
 		$data = $this->sanitizeData($xData);
-		$this->data = array_merge_recursive($this->data, $data);
+		$this->data = array_merge($this->data, $data);
 		$this->exportData();
 	}
 
@@ -70,7 +74,7 @@ class ReWP {
 	}
 
 	public function exportData() {
-		$dump = $this->parser->dump($this->data);
+		$dump = $this->parser->dump($this->data, 2, false);
 		$file = fopen($this->path . '/site.yml', 'w');
 		fwrite($file, $dump);
 		return fclose($file);

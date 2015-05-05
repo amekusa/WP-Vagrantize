@@ -31,6 +31,21 @@ class MenuScreen {
 				$data = $rewp->getData();
 				wp_send_json_success($data);
 			}),
+			new AjaxAction('render_rewp_settings_table', function () use($rewp) {
+				$data = $rewp->getData();
+				$parser = $rewp->getParser();
+
+				foreach ($data as $i => $iVal) {
+					if (!is_array($iVal)) continue;
+					$iDump = $parser->dump($iVal, 2, 0);
+					$iDump = preg_replace('/---\n/', '', $iDump); // Remove "---"
+					$data[$i] = $iDump;
+				}
+
+				ob_start();
+				include __DIR__ . '/view/ReWPSettingsTable.php';
+				wp_send_json_success(ob_get_clean());
+			}),
 			new AjaxAction('export_db', function () use($rewp) {
 				$rewp->exportDB();
 				wp_send_json_success(array ('msg', 'Database exported.'));
