@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a616edaa8e8132d64fd84a1ff55cb753",
+    "hash": "993e76d3ce195a5ad06eacc491aa7dae",
     "packages": [
         {
             "name": "amekusa/ReWP",
@@ -142,7 +142,7 @@
             "time": "2013-02-21 10:52:01"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": null,
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
