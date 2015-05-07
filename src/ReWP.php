@@ -17,7 +17,8 @@ class ReWP {
 
 	public function init() {
 		$this->user = wp_get_current_user();
-		$this->data = $this->parser->loadFile($this->path . '/provision/default.yml');
+		$source = file_get_contents($this->path . '/provision/default.yml');
+		$this->data = $this->parser->load($this->sanitizeDataSource($source));
 		$this->setData($this->getSiteData());
 	}
 
@@ -53,7 +54,13 @@ class ReWP {
 	public function setData($xData) {
 		$data = $this->sanitizeData($xData);
 		$this->data = array_merge($this->data, $data);
-		$this->exportData();
+		return $this->exportData();
+	}
+
+	public function sanitizeDataSource($xDataSource) {
+		$r = $xDataSource;
+		$r = preg_replace('/\s*#.*$/m', '', $r); // Remove comments
+		return $r;
 	}
 
 	public function sanitizeData($xData) {
@@ -74,9 +81,13 @@ class ReWP {
 	}
 
 	public function exportData() {
-		$dump = $this->parser->dump($this->data, 2, false);
+		$dump = $this->parser->dump($this->data, 2, 0, true);
 		$file = fopen($this->path . '/site.yml', 'w');
-		fwrite($file, $dump);
+		if (!$file) return false;
+		if (fwrite($file, $dump) === false) {
+			fclose($file);
+			return false;
+		}
 		return fclose($file);
 	}
 
