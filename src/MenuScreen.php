@@ -72,7 +72,7 @@ class MenuScreen {
 
 			wp_enqueue_script( // @formatter:off
 				'wp-vagrantize-menu',
-				WP_VAGRANTIZE_URL . SCRIPTS_DIR . '/menu.wp-vagrantize.jquery.js',
+				WP_VAGRANTIZE_URL . SCRIPTS_DIR . '/menu.jquery.js',
 				array ('jquery', 'autosize')
 			); // @formatter:on
 
