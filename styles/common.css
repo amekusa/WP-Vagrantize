@@ -4,3 +4,13 @@
  * WP Vagrantize :: Common styles
  */
 
+.spinner {
+	display: none;
+}
+.spinner.waiting {
+	display: inline-block;
+	float: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	vertical-align: text-top;
+}

@@ -13,13 +13,17 @@
 		<table class="form-table">
 			<tbody id="rewp-settings-table">
 				<tr>
-					<td colspan="2"><?php _e('Loading …') ?></td>
+					<td colspan="2">
+						<i class="spinner waiting"></i>
+						<?php _e('Loading …') ?>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		<p class="submit">
 			<?php submit_button(__('Save Changes'), 'primary', 'save', false) ?>
 			<?php submit_button(__('Reset'), 'secondary', 'reset', false) ?>
+			<i class="spinner"></i>
 		</p>
 	</form>
 
