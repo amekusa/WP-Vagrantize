@@ -65,18 +65,16 @@ class MenuScreen {
 	public function setup() {
 		add_action('admin_enqueue_scripts', function () {
 			wp_enqueue_script( // @formatter:off
-				'transparency',
-				WP_VAGRANTIZE_URL . BOWER_DIR . '/transparency/dist/transparency.min.js',
+				'autosize',
+				WP_VAGRANTIZE_URL . BOWER_DIR . '/autosize/dest/autosize.min.js',
 				array ('jquery')
 			); // @formatter:on
-
 
 			wp_enqueue_script( // @formatter:off
 				'wp-vagrantize-menu',
 				WP_VAGRANTIZE_URL . SCRIPTS_DIR . '/menu.wp-vagrantize.jquery.js',
-				array ('jquery', 'transparency')
+				array ('jquery', 'autosize')
 			); // @formatter:on
-
 
 			$vars = array ( // @formatter:off
 				'ajaxUrl' => admin_url('admin-ajax.php'),

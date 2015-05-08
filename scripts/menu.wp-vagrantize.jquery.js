@@ -24,6 +24,7 @@ jQuery(document).ready(function($) {
 		.done(function(response) {
 			var dom = this;
 			dom.html(response.data);
+			autosize($('textarea', dom));
 			activateForm();
 		});
 	}
