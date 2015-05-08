@@ -56,6 +56,9 @@ jQuery(document).ready(function($) {
 		form.on('submit', function(ev) {
 			ev.preventDefault(); // Abort browser-native submission
 
+			var spinner = button.siblings('.spinner');
+			if (spinner.length) spinner.addClass('waiting');
+
 			var submit = '';
 			var settings = {};
 
@@ -78,6 +81,9 @@ jQuery(document).ready(function($) {
 					context : form,
 					dataType : 'json',
 					cache : false
+				})
+				.always(function(response) {
+					if (spinner.length) spinner.removeClass('waiting');
 				})
 				.fail(function(request, status, error) {
 					var dom = this;
