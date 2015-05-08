@@ -16,15 +16,11 @@
 					<td colspan="2"><?php _e('Loading …') ?></td>
 				</tr>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="2">
-						<?php submit_button(__('Save Changes'), 'primary', 'save', false) ?>
-						<?php submit_button(__('Reset'), 'large', 'reset', false) ?>
-					</td>
-				</tr>
-			</tfoot>
 		</table>
+		<p class="submit">
+			<?php submit_button(__('Save Changes'), 'primary', 'save', false) ?>
+			<?php submit_button(__('Reset'), 'secondary', 'reset', false) ?>
+		</p>
 	</form>
 
 	<h3><?php _e('Download and Provision!') ?></h3>
