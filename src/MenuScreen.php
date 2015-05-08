@@ -84,6 +84,11 @@ class MenuScreen {
 				$vars['actions'][$iAct->getName()] = $iAct->toData();
 			}
 			wp_localize_script('wp-vagrantize-menu', 'WPVagrantize', $vars);
+			
+			wp_enqueue_style( // @formatter:off
+				'wp-vagrantize-common',
+				WP_VAGRANTIZE_URL . STYLES_DIR . '/common.css'
+			); // @formatter:on
 		});
 	}
 
