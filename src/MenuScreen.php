@@ -20,8 +20,20 @@ class MenuScreen {
 			new AjaxAction('saveReWPSettings', function () use($rewp) {
 				if (!$_POST) wp_send_json_error();
 				if (!array_key_exists('data', $_POST)) wp_send_json_error();
-				$newData = $_POST['data'];
-				if (!$rewp->setData($newData)) wp_send_json_error();
+
+				$rawData = $_POST['data'];
+				//var_dump($rawData); die;
+
+				$src = '';
+				foreach ($rawData as $i => $iVal) {
+					$src .= "{$i}:{$iVal}\n";
+				}
+				echo $src; die;
+
+				$parser = $rewp->getParser();
+				$data = $parser->load($src);
+
+				if (!$rewp->setData($data)) wp_send_json_error();
 				wp_send_json_success();
 			}),
 
@@ -34,11 +46,11 @@ class MenuScreen {
 				$data = $rewp->getData();
 				$parser = $rewp->getParser();
 
-				foreach ($data as $i => $iVal) {
-					if (!is_array($iVal)) continue;
-					$iDump = $parser->dump($iVal, 2, 0, true);
-					$iDump = preg_replace('/---\n/', '', $iDump); // Remove "---"
-					$data[$i] = $iDump;
+				foreach ($data as $i => $iData) {
+// 					if (!is_array($iData)) continue;
+// 					$iDump = $parser->dump($iData, 2, 0, true);
+// 					$iDump = preg_replace('/---\n/', '', $iDump); // Remove "---"
+// 					$data[$i] = $iDump;
 				}
 
 				ob_start();

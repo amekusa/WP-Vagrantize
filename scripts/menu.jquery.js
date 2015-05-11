@@ -24,7 +24,31 @@ jQuery(document).ready(function($) {
 		.done(function(response) {
 			var dom = this;
 			dom.html(response.data);
+
 			autosize($('textarea', dom));
+
+			var extensible = $('.extensible', dom);
+			extensible.each(function() {
+				var iEach = $(this);
+
+				var plus = $('<a class="button-overlaid plus">+</a>');
+				plus.appendTo(iEach);
+				plus.on('click', function(ev) {
+					ev.preventDefault();
+					var parent = $(this).parent();
+					var clone = parent.clone(true);
+					clone.find('input[value]').attr('value', '');
+					parent.after(clone);
+				});
+
+				var minus = $('<a class="button-overlaid minus">-</a>');
+				minus.appendTo(iEach)
+				minus.on('click', function(ev) {
+					ev.preventDefault();
+					$(this).parent().remove();
+				});
+			});
+
 			activateForm();
 		});
 	}
