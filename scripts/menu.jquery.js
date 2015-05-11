@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
 			ev.preventDefault(); // Abort browser-native submission
 
 			var spinner = button.siblings('.spinner');
-			if (spinner.length) spinner.addClass('waiting');
+			if (spinner.length) spinner.addClass('active');
 
 			var submit = '';
 			var settings = {};
@@ -69,29 +69,53 @@ jQuery(document).ready(function($) {
 				else settings[iData.name] = iData.value;
 			});
 
-			if (submit == 'save') {
-				$.ajax({
-					url : WPVagrantize.ajaxUrl,
-					method : 'POST',
-					type : 'POST',
-					data : $.extend(
-						WPVagrantize.actions.saveReWPSettings,
-						{ data : settings }
-					),
-					context : form,
-					dataType : 'json',
-					cache : false
-				})
-				.always(function(response) {
-					if (spinner.length) spinner.removeClass('waiting');
-				})
-				.fail(function(request, status, error) {
-					var dom = this;
-					dom.addClass('failed');
-				})
-				.done(function(response) {
-					renderTable();
-				});
+			switch (submit) {
+				case 'save':
+					$.ajax({
+						url : WPVagrantize.ajaxUrl,
+						method : 'POST',
+						type : 'POST',
+						data : $.extend(
+							WPVagrantize.actions.saveReWPSettings,
+							{ data : settings }
+						),
+						context : form,
+						dataType : 'json',
+						cache : false
+					})
+					.always(function(response) {
+						if (spinner.length) spinner.removeClass('active')
+					})
+					.fail(function(request, status, error) {
+						var dom = this;
+						dom.addClass('failed');
+					})
+					.done(function(response) {
+						renderTable();
+					});
+					break;
+
+				case 'reset':
+					$.ajax({
+						url : WPVagrantize.ajaxUrl,
+						method : 'POST',
+						type : 'POST',
+						data : WPVagrantize.actions.resetReWPSettings,
+						context : form,
+						dataType : 'json',
+						cache : false
+					})
+					.always(function(response) {
+						if (spinner.length) spinner.removeClass('active')
+					})
+					.fail(function(request, status, error) {
+						var dom = this;
+						dom.addClass('failed');
+					})
+					.done(function(response) {
+						renderTable();
+					});
+					break;
 			}
 		});
 

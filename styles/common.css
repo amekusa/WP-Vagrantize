@@ -7,7 +7,7 @@
 .spinner {
 	display: none;
 }
-.spinner.waiting {
+.spinner.active {
 	display: inline-block;
 	float: none;
 	margin-top: 0;

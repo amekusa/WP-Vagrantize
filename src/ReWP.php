@@ -12,21 +12,25 @@ class ReWP {
 	public function __construct($xPath = null) {
 		$this->path = $xPath ? $xPath : __DIR__;
 		$this->parser = new \Spyc();
-		$this->init();
 	}
 
-	public function init() {
-		$this->user = wp_get_current_user();
-		$source = file_get_contents($this->path . '/provision/default.yml');
-		$this->data = $this->parser->load($this->sanitizeDataSource($source));
-		$this->setData($this->getSiteData());
+	public function reset() {
+		$dataSrcFile = $this->path . '/site.yml';
+		if (!file_exists($dataSrcFile)) return true;
+		return unlink($dataSrcFile);
 	}
 
 	public function getParser() {
 		return $this->parser;
 	}
 
+	public function getUser() {
+		if (!$this->user) $this->user = wp_get_current_user();
+		return $this->user;
+	}
+
 	public function getData() {
+		if (!$this->data) $this->updateData();
 		return $this->data;
 	}
 
@@ -37,7 +41,7 @@ class ReWP {
 			'lang' => get_bloginfo('language'),
 			'title' => get_bloginfo('name'),
 			'multisite' => is_multisite(),
-			'admin_user' => $this->user->user_login,
+			'admin_user' => $this->getUser()->user_login,
 			'admin_pass' => '',
 			'db_prefix' => $GLOBALS['wpdb']->prefix,
 			'db_host' => DB_HOST,
@@ -46,7 +50,7 @@ class ReWP {
 			'db_pass' => DB_PASSWORD,
 			'plugins' => get_option('active_plugins'),
 			'theme' => wp_get_theme(),
-			'import_sql' => $this->user->has_cap('import'),
+			'import_sql' => $this->getUser()->has_cap('import'),
 		); // @formatter:on
 		return $r;
 	}
@@ -57,6 +61,20 @@ class ReWP {
 		return $this->exportData();
 	}
 
+	public function updateData() {
+		$src = file_get_contents($this->path . '/provision/default.yml');
+		$this->data = $this->parser->load($this->sanitizeDataSource($src));
+
+		$data = null;
+		$dataSrcFile = $this->path . '/site.yml';
+		if (!file_exists($dataSrcFile)) $data = $this->getSiteData();
+		else {
+			$src = file_get_contents($dataSrcFile);
+			$data = $this->parser->load($this->sanitizeDataSource($src));
+		}
+		$this->setData($data);
+	}
+
 	public function sanitizeDataSource($xDataSource) {
 		$r = $xDataSource;
 		$r = preg_replace('/\s*#.*$/m', '', $r); // Remove comments
@@ -65,7 +83,7 @@ class ReWP {
 
 	public function sanitizeData($xData) {
 		$r = array ();
-		foreach ($this->data as $i => $iData) {
+		foreach ($this->getData() as $i => $iData) {
 			if (!array_key_exists($i, $xData)) continue;
 			if ($xData[$i]) {
 				// TODO Abort if the type of $xData[$i] doesn't match for $iData
@@ -77,7 +95,7 @@ class ReWP {
 	}
 
 	public function export() {
-		if (!$this->user->has_cap('edit_post')) throw new UserCapabilityException();
+		if (!$this->getUser()->has_cap('edit_post')) throw new UserCapabilityException();
 	}
 
 	public function exportData() {
@@ -92,7 +110,10 @@ class ReWP {
 	}
 
 	public function exportDB() {
-		if (!$this->user->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
+		if (!$this->getUser()->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
+
+		$data = $this->getData();
+		if (!array_key_exists('import_sql_file', $data)) throw new \RuntimeException('Insufficient data.');
 
 		$memLim = ini_get('memory_limit');
 		@ini_set('memory_limit', '2048M');
@@ -113,7 +134,7 @@ class ReWP {
 					'lock-tables' => true          // So we must use this instead
 				)
 			); // @formatter:on
-			$dump->start($this->path . '/' . $this->data['import_sql_file']);
+			$dump->start($this->path . '/' . $data['import_sql_file']);
 		} catch (\Exception $e) {
 			throw $e;
 		}

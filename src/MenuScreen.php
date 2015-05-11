@@ -26,9 +26,8 @@ class MenuScreen {
 			}),
 
 			new AjaxAction('resetReWPSettings', function () use($rewp) {
-				$rewp->init();
-				$data = $rewp->getData();
-				wp_send_json_success($data);
+				if (!$rewp->reset()) wp_send_json_error();
+				wp_send_json_success();
 			}),
 
 			new AjaxAction('renderReWPSettingsTable', function () use($rewp) {
@@ -84,7 +83,7 @@ class MenuScreen {
 				$vars['actions'][$iAct->getName()] = $iAct->toData();
 			}
 			wp_localize_script('wp-vagrantize-menu', 'WPVagrantize', $vars);
-			
+
 			wp_enqueue_style( // @formatter:off
 				'wp-vagrantize-common',
 				WP_VAGRANTIZE_URL . STYLES_DIR . '/common.css'
