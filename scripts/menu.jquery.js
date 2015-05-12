@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 			extensible.each(function() {
 				var iEach = $(this);
 
-				var plus = $('<a class="button-overlaid plus">+</a>');
+				var plus = $('<a class="extend" title="Extend">+</a>');
 				plus.appendTo(iEach);
 				plus.on('click', function(ev) {
 					ev.preventDefault();
@@ -41,7 +41,7 @@ jQuery(document).ready(function($) {
 					parent.after(clone);
 				});
 
-				var minus = $('<a class="button-overlaid minus">-</a>');
+				var minus = $('<a class="unextend" title="Unextend">−</a>');
 				minus.appendTo(iEach)
 				minus.on('click', function(ev) {
 					ev.preventDefault();

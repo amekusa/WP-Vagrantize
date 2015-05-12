@@ -14,3 +14,54 @@
 	margin-bottom: 0;
 	vertical-align: text-top;
 }
+
+.extensible {
+	position: relative;
+}
+.extensible > input[type="text"] {
+	padding-right: 3.5em !important;
+}
+.extensible > .extend,
+.extensible > .unextend {
+	visibility: hidden;
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	font-size: 1.75em;
+	line-height: 1em;
+	color: gray;
+	opacity: .75;
+	transition-property: opacity, color, text-shadow;
+	transition-duration: .5s;
+	transition-timing-function: ease-in;
+}
+.extensible > .extend {
+	right: 1.5em;
+}
+.extensible > .unextend {
+	right: .75em;
+}
+.extensible:hover > .extend,
+.extensible:hover > .unextend {
+	visibility: visible;
+}
+.extensible > .extend:hover,
+.extensible > .extend:focus,
+.extensible > .unextend:hover,
+.extensible > .unextend:focus {
+	opacity: 1;
+	cursor: pointer;
+	transition-property: opacity, color, text-shadow;
+	transition-duration: .1s;
+	transition-timing-function: ease-out;
+}
+.extensible > .extend:hover,
+.extensible > .extend:focus {
+	color: #2ea2cc;
+	text-shadow: 0 0 2px #2ea2cc;
+}
+.extensible > .unextend:hover,
+.extensible > .unextend:focus {
+	color: crimson;
+	text-shadow: 0 0 2px crimson;
+}

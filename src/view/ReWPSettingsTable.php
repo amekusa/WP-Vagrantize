@@ -9,7 +9,7 @@
 		<?php } else if (is_array($iData)) { ?>
 		<?php 	foreach ($iData as $j => $jData) { ?>
 		<div class="extensible">
-			<input class="regular-text code" type="text" name="<?php echo esc_attr($i) ?>[]" value="<?php echo esc_attr((string) $jData) ?>" />
+			<input class="large-text code" type="text" name="<?php echo esc_attr($i) ?>[]" value="<?php echo esc_attr((string) $jData) ?>" />
 		</div>
 		<?php 	} ?>
 		<?php } else { ?>
