@@ -83,17 +83,11 @@ jQuery(document).ready(function($) {
 			var spinner = button.siblings('.spinner');
 			if (spinner.length) spinner.addClass('active');
 
-			var submit = '';
-			var settings = {};
+			submit = $('[name="submit"]', this);
+			if (!submit.length)
+				$.error('WP Vagrantize: DOM:' + submit.selector + ' is not found');
 
-			var formData = $(this).serializeArray();
-			$.each(formData, function(i, iData) {
-				if (!iData.hasOwnProperty('name')) return;
-				if (iData.name == 'submit') submit = iData.value;
-				else settings[iData.name] = iData.value;
-			});
-
-			switch (submit) {
+			switch (submit.attr('value')) {
 				case 'save':
 					$.ajax({
 						url : WPVagrantize.ajaxUrl,
@@ -101,7 +95,7 @@ jQuery(document).ready(function($) {
 						type : 'POST',
 						data : $.extend(
 							WPVagrantize.actions.saveReWPSettings,
-							{ data : settings }
+							{ data : $('[name!="submit"]', this).serialize() }
 						),
 						context : form,
 						dataType : 'json',

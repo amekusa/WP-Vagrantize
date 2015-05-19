@@ -21,17 +21,8 @@ class MenuScreen {
 				if (!$_POST) wp_send_json_error();
 				if (!array_key_exists('data', $_POST)) wp_send_json_error();
 
-				$rawData = $_POST['data'];
-				//var_dump($rawData); die;
-
-				$src = '';
-				foreach ($rawData as $i => $iVal) {
-					$src .= "{$i}:{$iVal}\n";
-				}
-				echo $src; die;
-
-				$parser = $rewp->getParser();
-				$data = $parser->load($src);
+				$data = array ();
+				parse_str($_POST['data'], $data);
 
 				if (!$rewp->setData($data)) wp_send_json_error();
 				wp_send_json_success();
