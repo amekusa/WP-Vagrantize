@@ -41,11 +41,17 @@ class AjaxAction {
 		return $this->nonce;
 	}
 
-	public function toData() {
-		$r = array (
-			'action' => $this->getName(),
-			'nonce' => $this->getNonce()
+	public function forJQAjax() {
+		return array (
+			'url' => admin_url('admin-ajax.php'),
+			'method' => 'POST', // jQuery >= 1.9.0
+			'type' => 'POST',   // jQuery <  1.9.0
+			'data' => array (
+				'action' => $this->getName(),
+				'nonce' => $this->getNonce()
+			),
+			'dataType' => 'json',
+			'cache' => false
 		);
-		return $r;
 	}
 }

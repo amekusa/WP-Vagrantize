@@ -7,15 +7,13 @@ jQuery(document).ready(function($) {
 		if (!table.length)
 			$.error('WP Vagrantize: DOM:' + table.selector + ' is not found');
 
-		$.ajax({
-			url : WPVagrantize.ajaxUrl,
-			method : 'POST', // jQuery >= 1.9.0
-			type : 'POST',   // jQuery <  1.9.0
-			data : WPVagrantize.actions.renderReWPSettingsTable,
-			context : table,
-			dataType : 'json',
-			cache : false
-		})
+		$.ajax($.extend(
+			true, // Deep merge
+			actions.renderReWPSettingsTable,
+			{
+				context : table
+			}
+		))
 		.fail(function(request, status, error) {
 			var dom = this;
 			dom.empty();
@@ -80,33 +78,38 @@ jQuery(document).ready(function($) {
 		form.on('submit', function(ev) {
 			ev.preventDefault(); // Abort browser-native submission
 
-			var spinner = button.siblings('.spinner');
-			if (spinner.length) spinner.addClass('active');
-
-			submit = $('[name="submit"]', this);
+			var submit = $('[name="submit"][value]', this);
 			if (!submit.length)
 				$.error('WP Vagrantize: DOM:' + submit.selector + ' is not found');
 
+			var fields = $('[name][value]', this).not(submit);
+			if (!fields.length)
+				$.error('WP Vagrantize: DOM:' + fields.selector + ' is not found');
+
+			var spinner = button.siblings('.spinner');
+			if (spinner.length) spinner.addClass('active');
+
 			switch (submit.attr('value')) {
 				case 'save':
-					$.ajax({
-						url : WPVagrantize.ajaxUrl,
-						method : 'POST',
-						type : 'POST',
-						data : $.extend(
-							WPVagrantize.actions.saveReWPSettings,
-							{ data : $('[name!="submit"]', this).serialize() }
-						),
-						context : form,
-						dataType : 'json',
-						cache : false
-					})
+					var sData = fields.serialize();
+					fields.attr('disabled', 'disabled');
+
+					$.ajax($.extend(
+						true,
+						actions.saveReWPSettings,
+						{
+							context : form,
+							data : {
+								data : sData
+							}
+						}
+					))
 					.always(function(response) {
-						if (spinner.length) spinner.removeClass('active')
+						fields.removeAttr('disabled');
+						if (spinner.length) spinner.removeClass('active');
 					})
 					.fail(function(request, status, error) {
-						var dom = this;
-						dom.addClass('failed');
+						$.error('WP Vagrantize: Request failed');
 					})
 					.done(function(response) {
 						renderTable();
@@ -114,21 +117,19 @@ jQuery(document).ready(function($) {
 					break;
 
 				case 'reset':
-					$.ajax({
-						url : WPVagrantize.ajaxUrl,
-						method : 'POST',
-						type : 'POST',
-						data : WPVagrantize.actions.resetReWPSettings,
-						context : form,
-						dataType : 'json',
-						cache : false
-					})
+					$.ajax($.extend(
+						true,
+						actions.resetReWPSettings,
+						{
+							context : form
+						}
+					))
 					.always(function(response) {
+						fields.removeAttr('disabled');
 						if (spinner.length) spinner.removeClass('active')
 					})
 					.fail(function(request, status, error) {
-						var dom = this;
-						dom.addClass('failed');
+						$.error('WP Vagrantize: Request failed');
 					})
 					.done(function(response) {
 						renderTable();

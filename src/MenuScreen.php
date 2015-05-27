@@ -12,7 +12,6 @@ class MenuScreen {
 
 	private function __construct(Menu $xMenu) {
 		$this->menu = $xMenu;
-
 		$rewp = new ReWP(WP_VAGRANTIZE_HOME . COMPOSER_DIR . '/amekusa/ReWP');
 
 		$this->actions = array ( // @formatter:off
@@ -23,6 +22,7 @@ class MenuScreen {
 
 				$data = array ();
 				parse_str($_POST['data'], $data);
+				//var_dump($data); die;
 
 				if (!$rewp->setData($data)) wp_send_json_error();
 				wp_send_json_success();
@@ -66,6 +66,7 @@ class MenuScreen {
 
 	public function setup() {
 		add_action('admin_enqueue_scripts', function () {
+
 			wp_enqueue_script( // @formatter:off
 				'autosize',
 				WP_VAGRANTIZE_URL . BOWER_DIR . '/autosize/dest/autosize.min.js',
@@ -78,14 +79,10 @@ class MenuScreen {
 				array ('jquery', 'autosize')
 			); // @formatter:on
 
-			$vars = array ( // @formatter:off
-				'ajaxUrl' => admin_url('admin-ajax.php'),
-				'actions' => array ()
-			); // @formatter:on
-			foreach ($this->actions as $iAct) {
-				$vars['actions'][$iAct->getName()] = $iAct->toData();
-			}
-			wp_localize_script('wp-vagrantize-menu', 'WPVagrantize', $vars);
+			$actions = array ();
+			foreach ($this->actions as $iAct)
+				$actions[$iAct->getName()] = $iAct->forJQAjax();
+			wp_localize_script('wp-vagrantize-menu', 'actions', $actions);
 
 			wp_enqueue_style( // @formatter:off
 				'wp-vagrantize-common',
