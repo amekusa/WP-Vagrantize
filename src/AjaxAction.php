@@ -31,6 +31,7 @@ class AjaxAction {
 			header('HTTP/1.1 500 Internal Server Error');
 			die();
 		}
+		if (!defined('AJAX_ACTION')) define('AJAX_ACTION', $this->name);
 	}
 
 	public final function getName() {

@@ -4,8 +4,9 @@
 <tr>
 	<th scope="row"><?php echo esc_html($i) ?></th>
 	<td>
-		<?php if (is_bool($iData) || $iData == 'true') { ?>
-		<label><input name="<?php echo esc_attr($i) ?>" type="checkbox" value="true"<?php if ($iData) { ?> checked<?php } ?> />true</label>
+		<?php if (is_bool($iData)) { ?>
+		<input type="hidden" name="<?php echo esc_attr($i) ?>" value="false" />
+		<label><input type="checkbox" name="<?php echo esc_attr($i) ?>" value="true"<?php if ($iData) { ?> checked<?php } ?> />true</label>
 		<?php } else if (is_array($iData)) { ?>
 		<?php   foreach ($iData as $j => $jData) { ?>
 		<?php     if (is_string($j)) { // Associative array ?>

@@ -78,11 +78,11 @@ jQuery(document).ready(function($) {
 		form.on('submit', function(ev) {
 			ev.preventDefault(); // Abort browser-native submission
 
-			var submit = $('[name="submit"][value]', this);
+			var submit = $(':input[name="submit"][value]', this);
 			if (!submit.length)
 				$.error('WP Vagrantize: DOM:' + submit.selector + ' is not found');
 
-			var fields = $('[name][value]', this).not(submit);
+			var fields = $(':input[name][value]', this).not(submit);
 			if (!fields.length)
 				$.error('WP Vagrantize: DOM:' + fields.selector + ' is not found');
 

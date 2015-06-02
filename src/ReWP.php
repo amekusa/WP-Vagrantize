@@ -6,12 +6,13 @@ use Ifsnop\Mysqldump\Mysqldump;
 class ReWP {
 	private $path;
 	private $parser;
-	private $user;
 	private $data;
+	private $user;
 
 	public function __construct($xPath = null) {
 		$this->path = $xPath ? $xPath : __DIR__;
 		$this->parser = new \Spyc();
+		$this->updateData();
 	}
 
 	public function reset() {
@@ -20,18 +21,21 @@ class ReWP {
 		return unlink($dataSrcFile);
 	}
 
+	public function getPath() {
+		return $this->path;
+	}
+
 	public function getParser() {
 		return $this->parser;
+	}
+
+	public function getData() {
+		return $this->data;
 	}
 
 	public function getUser() {
 		if (!$this->user) $this->user = wp_get_current_user();
 		return $this->user;
-	}
-
-	public function getData() {
-		if (!$this->data) $this->updateData();
-		return $this->data;
 	}
 
 	public function getSiteData() {
@@ -58,7 +62,7 @@ class ReWP {
 	public function setData($xData) {
 		$data = $this->sanitizeData($xData);
 		$this->data = array_merge($this->data, $data);
-		return $this->exportData();
+		return $this->data;
 	}
 
 	public function updateData() {
@@ -83,11 +87,29 @@ class ReWP {
 
 	public function sanitizeData($xData) {
 		$r = array ();
-		foreach ($this->getData() as $i => $iData) {
+
+		foreach ($this->data as $i => $iData) {
 			if (!array_key_exists($i, $xData)) continue;
-			if ($xData[$i]) {
-				// TODO Abort if the type of $xData[$i] doesn't match for $iData
+
+			// Type matching
+
+			if (is_bool($iData)) { // Boolean
+
+				if (!is_bool($xData[$i])) { // Type mismatch, but…
+
+					// String values: "false", "true" are capable
+					if ($xData[$i] === 'false') $xData[$i] = false;
+					else if ($xData[$i] === 'true') $xData[$i] = true;
+
+					// Integer values: 0, 1 are capable
+					else if ($xData[$i] === 0) $xData[$i] = false;
+					else if ($xData[$i] === 1) $xData[$i] = true;
+
+					// Others else are invalid
+					else continue;
+				}
 			}
+
 			$r[$i] = $xData[$i];
 			unset($xData[$i]);
 		}
@@ -99,7 +121,7 @@ class ReWP {
 	}
 
 	public function exportData() {
-		$dump = $this->parser->dump($this->data, 2, 0, true);
+		$dump = $this->parser->dump($this->data, 2, 0);
 		$file = fopen($this->path . '/site.yml', 'w');
 		if (!$file) return false;
 		if (fwrite($file, $dump) === false) {
@@ -111,9 +133,7 @@ class ReWP {
 
 	public function exportDB() {
 		if (!$this->getUser()->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
-
-		$data = $this->getData();
-		if (!array_key_exists('import_sql_file', $data)) throw new \RuntimeException('Insufficient data.');
+		if (!array_key_exists('import_sql_file', $this->data)) throw new \RuntimeException('Insufficient data.');
 
 		$memLim = ini_get('memory_limit');
 		@ini_set('memory_limit', '2048M');
@@ -134,7 +154,7 @@ class ReWP {
 					'lock-tables' => true          // So we must use this instead
 				)
 			); // @formatter:on
-			$dump->start($this->path . '/' . $data['import_sql_file']);
+			$dump->start($this->path . '/' . $this->data['import_sql_file']);
 		} catch (\Exception $e) {
 			throw $e;
 		}
