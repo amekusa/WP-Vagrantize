@@ -91,7 +91,7 @@ class ReWP {
 		foreach ($this->data as $i => $iData) {
 			if (!array_key_exists($i, $xData)) continue;
 
-			// Type matching
+			// Sanitize by types
 
 			if (is_bool($iData)) { // Boolean
 
@@ -107,6 +107,20 @@ class ReWP {
 
 					// Others else are invalid
 					else continue;
+				}
+
+			} else if (is_array($iData)) { // Array
+				if (!is_array($xData[$i])) continue; // Type mismatch
+
+				reset($iData);
+				reset($xData[$i]);
+
+				if (key($iData) === 0) { // Sequential array
+					if (key($xData[$i]) !== 0) continue; // Type mismatch
+					$xData[$i] = array_filter($xData[$i]); // Remove falsy elements
+
+				} else if (is_string(key($iData))) { // Associative array
+					if (!is_string(key($xData[$i]))) continue; // Type mismatch
 				}
 			}
 
