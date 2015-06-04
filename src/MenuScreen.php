@@ -41,9 +41,15 @@ class MenuScreen {
 			}),
 
 			new AjaxAction('exportDB', function () use($rewp) {
-				$rewp->exportDB();
-				wp_send_json_success(array ('msg', 'Database exported.'));
+				$file = '';
+				try {
+					$file = $rewp->exportDB();
+				} catch (\Exception $e) {
+					wp_send_json_error($e->getMessage());
+				}
+				wp_send_json_success(array ('file' => $file));
 			})
+
 		); // @formatter:on
 
 		foreach ($this->actions as $iAct) $iAct->register();

@@ -117,6 +117,8 @@ jQuery(document).ready(function($) {
 					break;
 
 				case 'reset':
+					fields.attr('disabled', 'disabled');
+
 					$.ajax($.extend(
 						true,
 						actions.resetReWPSettings,

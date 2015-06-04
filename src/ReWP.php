@@ -149,6 +149,8 @@ class ReWP {
 		if (!$this->getUser()->has_cap('export')) throw new UserCapabilityException('You have no sufficient rights to export the database');
 		if (!array_key_exists('import_sql_file', $this->data)) throw new \RuntimeException('Insufficient data.');
 
+		$path = $this->path . '/' . $this->data['import_sql_file'];
+
 		$memLim = ini_get('memory_limit');
 		@ini_set('memory_limit', '2048M');
 
@@ -168,12 +170,15 @@ class ReWP {
 					'lock-tables' => true          // So we must use this instead
 				)
 			); // @formatter:on
-			$dump->start($this->path . '/' . $this->data['import_sql_file']);
+			$dump->start($path);
+
 		} catch (\Exception $e) {
 			throw $e;
 		}
 
 		@ini_set('memory_limit', $memLim);
 		@ini_set('max_execution_time', $timeLim);
+
+		return $path;
 	}
 }

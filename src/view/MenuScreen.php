@@ -3,15 +3,15 @@
 <div class="wrap">
 	<h2>WP Vagrantize</h2>
 	<p><?php _e('You can create your own Vagrant recipe to clone this blog into your local machine.') ?><br/><?php _e('Just follow the steps below.') ?></p>
-	<ol class="step-by-step">
-		<li><a href="#s-database"><?php _e('Export The Database') ?></a></li>
-		<li><a href="#s-vm-settings"><?php _e('Customize VM settings') ?></a></li>
-		<li><a href="#s-download"><?php _e('Download your recipe') ?></a></li>
-		<li><a href="#s-create-vm"><?php _e('Create a VM from the recipe') ?></a></li>
+	<ol>
+		<li><a href="#s-export"><?php _e('Export The Database') ?></a></li>
+		<li><a href="#s-customize"><?php _e('Customize Settings') ?></a></li>
+		<li><a href="#s-download"><?php _e('Download Your Recipe') ?></a></li>
+		<li><a href="#s-create"><?php _e('Create A VM From The Recipe') ?></a></li>
 	</ol>
 	<hr/>
 
-	<h3 id="s-database"><?php _e('Database') ?></h3>
+	<h3 id="s-export"><?php _e('Export The Database') ?></h3>
 	<form>
 		<p class="submit">
 			<?php submit_button(__('Export'), 'primary', 'export-db', false) ?>
@@ -20,7 +20,7 @@
 	</form>
 	<hr/>
 
-	<h3 id="s-vm-settings"><?php _e('VM Settings') ?></h3>
+	<h3 id="s-customize"><?php _e('Customize Settings') ?></h3>
 	<form id="rewp-settings-form" action="" method="post">
 		<table class="form-table">
 			<tbody id="rewp-settings-table">
@@ -49,7 +49,7 @@
 	</form>
 	<hr/>
 
-	<h3 id="s-create-vm"><?php _e('Create a VM') ?></h3>
+	<h3 id="s-create"><?php _e('Create A VM From The Recipe') ?></h3>
 	<ol>
 		<li><?php _e('Extract the recipe into any directory you like') ?></li>
 		<li>
