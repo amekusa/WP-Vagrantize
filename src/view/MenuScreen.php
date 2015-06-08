@@ -21,9 +21,9 @@
 	<hr/>
 
 	<h3 id="s-customize"><?php _e('Customize Settings') ?></h3>
-	<form id="rewp-settings-form" action="" method="post">
+	<form id="settings-form" action="" method="post">
 		<table class="form-table">
-			<tbody id="rewp-settings-table">
+			<tbody id="settings-table">
 				<tr>
 					<td colspan="2">
 						<i class="spinner active"></i>

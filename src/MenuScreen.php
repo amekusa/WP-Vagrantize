@@ -16,7 +16,7 @@ class MenuScreen {
 
 		$this->actions = array ( // @formatter:off
 
-			new AjaxAction('saveReWPSettings', function () use($rewp) {
+			new AjaxAction('saveSettings', function () use($rewp) {
 				if (!$_POST) wp_send_json_error();
 				if (!array_key_exists('data', $_POST)) wp_send_json_error();
 
@@ -28,15 +28,15 @@ class MenuScreen {
 				else wp_send_json_success();
 			}),
 
-			new AjaxAction('resetReWPSettings', function () use($rewp) {
+			new AjaxAction('resetSettings', function () use($rewp) {
 				if (!$rewp->reset()) wp_send_json_error();
 				else wp_send_json_success();
 			}),
 
-			new AjaxAction('renderReWPSettingsTable', function () use($rewp) {
+			new AjaxAction('renderSettingsTable', function () use($rewp) {
 				$data = $rewp->getData();
 				ob_start();
-				include __DIR__ . '/view/ReWPSettingsTable.php';
+				include __DIR__ . '/view/SettingsTable.php';
 				wp_send_json_success(ob_get_clean());
 			}),
 

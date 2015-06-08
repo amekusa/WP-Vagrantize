@@ -3,13 +3,13 @@ jQuery(document).ready(function($) {
 	renderTable();
 
 	function renderTable() {
-		var table = $('#rewp-settings-table');
+		var table = $('#settings-table');
 		if (!table.length)
 			$.error('WP Vagrantize: DOM:' + table.selector + ' is not found');
 
 		$.ajax($.extend(
 			true, // Deep merge
-			actions.renderReWPSettingsTable,
+			actions.renderSettingsTable,
 			{
 				context : table
 			}
@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
 	function activateForm() {
 		if (isFormActive) return;
 
-		var form = $('form#rewp-settings-form');
+		var form = $('form#settings-form');
 		if (!form.length)
 			$.error('WP Vagrantize: DOM:' + form.selector + ' is not found');
 
@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 
 					$.ajax($.extend(
 						true,
-						actions.saveReWPSettings,
+						actions.saveSettings,
 						{
 							context : form,
 							data : {
@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
 
 					$.ajax($.extend(
 						true,
-						actions.resetReWPSettings,
+						actions.resetSettings,
 						{
 							context : form
 						}
