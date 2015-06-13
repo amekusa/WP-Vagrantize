@@ -12,7 +12,7 @@
 	<hr/>
 
 	<h3 id="s-export"><?php _e('Export The Database') ?></h3>
-	<form>
+	<form id="export-form" action="" method="post">
 		<p class="submit">
 			<?php submit_button(__('Export'), 'primary', 'export-db', false) ?>
 			<i class="spinner"></i>
@@ -21,7 +21,7 @@
 	<hr/>
 
 	<h3 id="s-customize"><?php _e('Customize Settings') ?></h3>
-	<form id="settings-form" action="" method="post">
+	<form id="customize-form" action="" method="post">
 		<table class="form-table">
 			<tbody id="settings-table">
 				<tr>
