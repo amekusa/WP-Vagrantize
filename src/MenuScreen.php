@@ -66,15 +66,9 @@ class MenuScreen {
 		add_action('admin_enqueue_scripts', function () {
 
 			wp_enqueue_script( // @formatter:off
-				'autosize',
-				WP_VAGRANTIZE_URL . BOWER_DIR . '/autosize/dest/autosize.min.js',
-				array ('jquery')
-			); // @formatter:on
-
-			wp_enqueue_script( // @formatter:off
 				'wp-vagrantize-menu',
 				WP_VAGRANTIZE_URL . SCRIPTS_DIR . '/menu.jquery.js',
-				array ('jquery', 'autosize')
+				array ('jquery')
 			); // @formatter:on
 
 			$actions = array ();
