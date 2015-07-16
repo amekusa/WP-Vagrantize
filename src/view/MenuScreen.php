@@ -1,6 +1,6 @@
 <?php namespace amekusa\WPVagrantize\view ?>
 
-<div class="wrap">
+<div id="wp-vagrantize-menu-root" class="wrap">
 	<h2>WP Vagrantize</h2>
 	<p><?php _e('You can create your own Vagrant recipe to clone this blog into your local machine.') ?><br/><?php _e('Just follow the steps below.') ?></p>
 	<ol>
@@ -14,7 +14,7 @@
 	<h3 id="s-export"><?php _e('Export The Database') ?></h3>
 	<form id="export-form" action="" method="post">
 		<p class="submit">
-			<?php submit_button(__('Export'), 'primary', 'export-db', false) ?>
+			<?php submit_button(__('Export'), 'primary', 'export', false) ?>
 			<i class="spinner"></i>
 		</p>
 	</form>
