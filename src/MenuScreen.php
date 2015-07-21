@@ -24,8 +24,16 @@ class MenuScreen {
 				parse_str($_POST['data'], $data);
 				$rewp->setData($data);
 
-				if (!$rewp->exportData()) wp_send_json_error();
-				else wp_send_json_success();
+				$file = $rewp->exportData();
+				if (!$file) wp_send_json_error();
+				else {
+					$time = filemtime($file);
+					wp_send_json_success(array (
+						'file' => $file,
+						'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
+						'datetime' => date(DATE_W3C, $time)
+					));
+				}
 			}),
 
 			new AjaxAction('resetSettings', function () use($rewp) {
@@ -47,7 +55,12 @@ class MenuScreen {
 				} catch (\Exception $e) {
 					wp_send_json_error($e->getMessage());
 				}
-				wp_send_json_success(array ('file' => $file));
+				$time = filemtime($file);
+				wp_send_json_success(array (
+					'file' => $file,
+					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
+					'datetime' => date(DATE_W3C, $time)
+				));
 			})
 
 		); // @formatter:on

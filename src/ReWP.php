@@ -136,13 +136,14 @@ class ReWP {
 
 	public function exportData() {
 		$dump = $this->parser->dump($this->data, 2, 0);
-		$file = fopen($this->path . '/site.yml', 'w');
-		if (!$file) return false;
-		if (fwrite($file, $dump) === false) {
-			fclose($file);
+		$file = $this->path . '/site.yml';
+		$io = fopen($file, 'w');
+		if (!$io) return false;
+		if (fwrite($io, $dump) === false) {
+			fclose($io);
 			return false;
 		}
-		return fclose($file);
+		return fclose($io) ? $file : false;
 	}
 
 	public function exportDB() {

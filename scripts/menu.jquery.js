@@ -104,7 +104,11 @@ jQuery(document).ready(function($) {
 								$.error('WP Vagrantize: Request failed with status: ' + status);
 							})
 							.done(function(response) {
-								this.append(app.nodes.compose.notice('Exported to <span class="code file">' + response.data.file + '</span>', 'notice-success'));
+								this.append(app.nodes.compose.notice(
+									'Exported to <span class="code file">' + response.data.file
+									+ '</span> @ <time datetime="' + response.data.datetime + '">'
+									+ response.data.date + '</time>', 'notice-success'
+								));
 							});
 							break;
 						}
@@ -200,6 +204,11 @@ jQuery(document).ready(function($) {
 								$.error('WP Vagrantize: Request failed');
 							})
 							.done(function(response) {
+								this.append(app.nodes.compose.notice(
+									'Saved to <span class="code file">' + response.data.file
+									+ '</span> @ <time datetime="' + response.data.datetime + '">'
+									+ response.data.date + '</time>', 'notice-success'
+								));
 								self.render();
 							});
 							break;
