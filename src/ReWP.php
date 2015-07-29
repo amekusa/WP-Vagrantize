@@ -39,6 +39,7 @@ class ReWP {
 	}
 
 	public function getSiteData() {
+
 		$r = array ( // @formatter:off
 			'hostname_old' => gethostname(),
 			'version' => get_bloginfo('version'),
@@ -52,10 +53,13 @@ class ReWP {
 			'db_name' => DB_NAME,
 			'db_user' => DB_USER,
 			'db_pass' => DB_PASSWORD,
-			'plugins' => get_option('active_plugins'),
 			'theme' => wp_get_theme(),
 			'import_sql' => $this->getUser()->has_cap('import'),
 		); // @formatter:on
+
+		$r['plugins'] = get_option('active_plugins');
+		foreach ($r['plugins'] as $i => $iP) $r['plugins'][$i] = explode('/', $iP)[0];
+
 		return $r;
 	}
 
