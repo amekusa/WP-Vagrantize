@@ -36,7 +36,15 @@ jQuery(document).ready(function($) {
 						case 0: classes = '';
 					}
 					if (classes) classes = ' ' + classes;
-					return $('<div class="notice' + classes + '"><p>' + msg + '</p></div>');
+					var r = $('<div class="notice' + classes + '"><p>' + msg + '</p></div>');
+
+					setTimeout(function() {
+						r.fadeOut(2000, function() {
+							$(this).remove();
+						});
+					}, 8000);
+
+					return r;
 				}
 			}
 		},
