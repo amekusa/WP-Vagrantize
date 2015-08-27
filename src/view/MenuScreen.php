@@ -41,7 +41,7 @@
 	<hr/>
 
 	<h3 id="s-download"><?php _e('Download Your Recipe') ?></h3>
-	<form>
+	<form id="download-form" action="" method="post">
 		<p class="submit">
 			<?php submit_button(__('Download'), 'primary', 'download', false) ?>
 			<i class="spinner"></i>

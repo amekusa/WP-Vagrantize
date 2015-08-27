@@ -23,12 +23,12 @@ class MenuScreen {
 				parse_str($_POST['data'], $data);
 				$rewp->setData($data);
 
-				$file = $rewp->exportData();
-				if (!$file) wp_send_json_error();
+				$dest = $rewp->exportData();
+				if (!$dest) wp_send_json_error();
 				else {
-					$time = filemtime($file);
+					$time = filemtime($dest);
 					wp_send_json_success(array (
-						'file' => $file,
+						'file' => $dest,
 						'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
 						'datetime' => date(DATE_W3C, $time)
 					));
@@ -48,15 +48,32 @@ class MenuScreen {
 			}),
 
 			new AjaxAction('exportDB', function () use($rewp) {
-				$file = '';
+				$dest = '';
 				try {
-					$file = $rewp->exportDB();
+					$dest = $rewp->exportDB();
 				} catch (\Exception $e) {
 					wp_send_json_error($e->getMessage());
 				}
-				$time = filemtime($file);
+				$time = filemtime($dest);
 				wp_send_json_success(array (
-					'file' => $file,
+					'file' => $dest,
+					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
+					'datetime' => date(DATE_W3C, $time)
+				));
+			}),
+
+			new AjaxAction('download', function () use($rewp) {
+				$dest = WP_VAGRANTIZE_HOME . 'downloads/vagrant-me-up.' . date('YmdHis') . '.zip';
+
+				$zip = new \ZipArchiveEx();
+				$zip->open($dest, \ZipArchive::OVERWRITE);
+				$zip->addDir($rewp->getPath());
+				$zip->close();
+
+				$time = filemtime($dest);
+				wp_send_json_success(array (
+					'file' => $dest,
+					'fileUrl' => WP_VAGRANTIZE_URL . 'downloads/' . basename($dest),
 					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
 					'datetime' => date(DATE_W3C, $time)
 				));
