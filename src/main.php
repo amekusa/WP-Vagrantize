@@ -1,5 +1,5 @@
-<?php
-namespace amekusa\WPVagrantize;
+<?php namespace amekusa\WPVagrantize;
+
 const TEXT_DOMAIN = 'wp-vagrantize';
 const COMPOSER_DIR = 'lib/composer';
 const BOWER_DIR = 'lib/bower';

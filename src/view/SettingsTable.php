@@ -16,7 +16,7 @@
 			<input class="large-text code" type="text" name="<?php echo esc_attr("{$i}[]") ?>" value="<?php echo esc_attr((string) $jData) ?>" />
 		</div>
 		<?php     } ?>
-		<?php 	} ?>
+		<?php   } ?>
 		<?php } else { ?>
 		<?php   $value = (string) $iData ?>
 		<?php   $nRows = substr_count($value, "\n") + 1 ?>

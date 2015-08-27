@@ -1,5 +1,4 @@
-<?php
-namespace amekusa\WPVagrantize;
+<?php namespace amekusa\WPVagrantize;
 
 class Menu {
 	private static $instance;
