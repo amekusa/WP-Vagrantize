@@ -53,7 +53,7 @@ class ReWP {
 			'db_name' => DB_NAME,
 			'db_user' => DB_USER,
 			'db_pass' => DB_PASSWORD,
-			'theme' => wp_get_theme(),
+			'theme' => wp_get_theme()->get_stylesheet(),
 			'import_sql' => $this->getUser()->has_cap('import'),
 		); // @formatter:on
 
