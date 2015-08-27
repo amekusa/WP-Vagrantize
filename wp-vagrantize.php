@@ -1,11 +1,11 @@
 <?php
 /*
  Plugin Name: WP Vagrantize
- Version: 0.1-alpha
- Description: PLUGIN DESCRIPTION HERE
- Author: YOUR NAME HERE
- Author URI: YOUR SITE HERE
- Plugin URI: PLUGIN SITE HERE
+ Version: 1.0.0
+ Description: A smart way to reproduce your blog into the local machine
+ Author: Satoshi Soma a.k.a amekusa
+ Author URI: https://github.com/amekusa
+ Plugin URI: https://github.com/amekusa/WP-Vagrantize
  Text Domain: wp-vagrantize
  Domain Path: /languages
  */
