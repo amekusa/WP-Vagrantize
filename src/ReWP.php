@@ -11,6 +11,7 @@ class ReWP {
 	public function __construct($xPath = null) {
 		$this->path = $xPath ? $xPath : __DIR__;
 		$this->parser = new \Spyc();
+		$this->parser->setting_dump_force_quotes = true;
 		$this->updateData();
 	}
 
