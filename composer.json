@@ -12,7 +12,7 @@
 	],
 	"require" : {
 		"php" : ">=5.3.3",
-		"amekusa/ReWP" : "dev-master",
+		"amekusa/ReWP" : "1.*",
 		"mustangostang/spyc" : ">=0.5.1",
 		"ifsnop/mysqldump-php" : "1.*",
 		"codeless/ziparchiveex": "~1.0"
