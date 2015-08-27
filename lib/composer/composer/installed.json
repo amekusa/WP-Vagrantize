@@ -1,0 +1,260 @@
+[
+    {
+        "name": "interconnectit/search-replace-db",
+        "version": "3.1",
+        "version_normalized": "3.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/interconnectit/Search-Replace-DB.git",
+            "reference": "28a1f059e4739bca618056dcf3c550a634cf1035"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/interconnectit/Search-Replace-DB/zipball/28a1f059e4739bca618056dcf3c550a634cf1035",
+            "reference": "28a1f059e4739bca618056dcf3c550a634cf1035",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-07-07 15:44:12",
+        "bin": [
+            "srdb.cli.php"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "srdb.class.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "description": "A PHP search replace tool for quickly modifying a string throughout a database. Useful for changing the base URL when migrating a WordPress site from development to production.",
+        "homepage": "https://github.com/interconnectit/Search-Replace-DB"
+    },
+    {
+        "name": "amekusa/ReWP",
+        "version": "1.5.1",
+        "version_normalized": "1.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amekusa/ReWP.git",
+            "reference": "7bc31adf89c8512cca1d7ac4bd9bd3455f60c537"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amekusa/ReWP/zipball/7bc31adf89c8512cca1d7ac4bd9bd3455f60c537",
+            "reference": "7bc31adf89c8512cca1d7ac4bd9bd3455f60c537",
+            "shasum": ""
+        },
+        "require": {
+            "interconnectit/search-replace-db": "~3.0"
+        },
+        "time": "2015-08-27 16:58:29",
+        "type": "vagrant-provisioner",
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "amekusa",
+                "email": "post@amekusa.com"
+            }
+        ],
+        "description": "A smart way to rebuild your WordPress site into the local machine",
+        "homepage": "https://github.com/amekusa/ReWP",
+        "keywords": [
+            "vagrant",
+            "wordpress"
+        ],
+        "support": {
+            "source": "https://github.com/amekusa/ReWP/tree/1.5.1",
+            "issues": "https://github.com/amekusa/ReWP/issues"
+        }
+    },
+    {
+        "name": "codeless/logmore",
+        "version": "v0.9.0",
+        "version_normalized": "0.9.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/codeless/LogMore.git",
+            "reference": "90719122c56c2380cdb8019b36537a9a0a78b66d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/codeless/LogMore/zipball/90719122c56c2380cdb8019b36537a9a0a78b66d",
+            "reference": "90719122c56c2380cdb8019b36537a9a0a78b66d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "time": "2012-10-12 12:08:41",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "LogMore": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "CC-BY-3.0"
+        ],
+        "description": "Minimalist logging tool providing wrappers for openlog, closelog and syslog",
+        "homepage": "https://www.github.com/codeless/logmore",
+        "keywords": [
+            "log",
+            "logging"
+        ]
+    },
+    {
+        "name": "codeless/ziparchiveex",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/codeless/ZipArchiveEx.git",
+            "reference": "44883cbb8fec12d9a9001e25fcfa3a142b539c60"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/codeless/ZipArchiveEx/zipball/44883cbb8fec12d9a9001e25fcfa3a142b539c60",
+            "reference": "44883cbb8fec12d9a9001e25fcfa3a142b539c60",
+            "shasum": ""
+        },
+        "require": {
+            "codeless/logmore": ">=0.8.3"
+        },
+        "require-dev": {
+            "heartsentwined/file-system-manager": ">=1.1.1"
+        },
+        "time": "2012-09-24 11:11:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ZipArchiveEx": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Extension of the PHP integrated ZipArchive class for recursively adding directories",
+        "homepage": "https://www.github.com/codeless/ziparchiveex",
+        "keywords": [
+            "compress",
+            "recursive",
+            "zip"
+        ]
+    },
+    {
+        "name": "ifsnop/mysqldump-php",
+        "version": "v1.6",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ifsnop/mysqldump-php.git",
+            "reference": "757acfbdfc4342eab39b8ba3fda6ea19894eb50f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ifsnop/mysqldump-php/zipball/757acfbdfc4342eab39b8ba3fda6ea19894eb50f",
+            "reference": "757acfbdfc4342eab39b8ba3fda6ea19894eb50f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*",
+            "squizlabs/php_codesniffer": "1.*"
+        },
+        "time": "2015-06-11 05:18:39",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Ifsnop\\": "src/Ifsnop/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Diego Torres",
+                "homepage": "https://github.com/ifsnop",
+                "role": "Developer"
+            }
+        ],
+        "description": "This is a php version of linux's mysqldump in terminal \"$ mysqldump -u username -p...\"",
+        "homepage": "https://github.com/ifsnop/mysqldump-php",
+        "keywords": [
+            "backup",
+            "database",
+            "dump",
+            "export",
+            "mysql",
+            "mysqldump",
+            "pdo",
+            "sqlite"
+        ]
+    },
+    {
+        "name": "mustangostang/spyc",
+        "version": "0.5.1",
+        "version_normalized": "0.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mustangostang/spyc.git",
+            "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
+            "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.1"
+        },
+        "time": "2013-02-21 10:52:01",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.5.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "Spyc.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT License"
+        ],
+        "authors": [
+            {
+                "name": "mustangostang",
+                "email": "vlad.andersen@gmail.com"
+            }
+        ],
+        "description": "A simple YAML loader/dumper class for PHP",
+        "homepage": "https://github.com/mustangostang/spyc/",
+        "keywords": [
+            "spyc",
+            "yaml",
+            "yml"
+        ]
+    }
+]
