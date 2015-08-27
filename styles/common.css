@@ -4,10 +4,16 @@
  * WP Vagrantize :: Common styles
  */
 
+hr {
+	margin-top: 24px;
+	margin-bottom: 36px;
+}
+
 .spinner {
 	display: none;
 }
 .spinner.active {
+	visibility: visible;
 	display: inline-block;
 	float: none;
 	margin-top: 0;
@@ -64,4 +70,8 @@
 .extensible > .unextend:focus {
 	color: crimson;
 	text-shadow: 0 0 2px crimson;
+}
+
+.form-table tr + tr > * {
+	border-top: 1px dashed #ddd;
 }
