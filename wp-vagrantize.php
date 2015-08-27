@@ -7,7 +7,6 @@
  Author URI: https://github.com/amekusa
  Plugin URI: https://github.com/amekusa/WP-Vagrantize
  Text Domain: wp-vagrantize
- Domain Path: /languages
  */
 if (!defined('WP_VAGRANTIZE_HOME')) define('WP_VAGRANTIZE_HOME', __DIR__ . '/');
 if (!defined('WP_VAGRANTIZE_URL')) define('WP_VAGRANTIZE_URL', plugin_dir_url(__FILE__));
