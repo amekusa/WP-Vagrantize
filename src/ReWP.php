@@ -43,7 +43,7 @@ class ReWP {
 		$r = array ( // @formatter:off
 			'hostname_old' => gethostname(),
 			'version' => get_bloginfo('version'),
-			'lang' => get_bloginfo('language'),
+			'lang' => get_locale(),
 			'title' => get_bloginfo('name'),
 			'multisite' => is_multisite(),
 			'admin_user' => $this->getUser()->user_login,
