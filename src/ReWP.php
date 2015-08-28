@@ -50,7 +50,6 @@ class ReWP {
 			'title' => get_bloginfo('name'),
 			'multisite' => is_multisite(),
 			'admin_user' => $this->getUser()->user_login,
-			'admin_pass' => '',
 			'db_prefix' => $GLOBALS['wpdb']->prefix,
 			'db_host' => DB_HOST,
 			'db_name' => DB_NAME,
