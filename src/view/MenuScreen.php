@@ -7,14 +7,14 @@
 		<?php _e('Follow the steps below.', 'wp-vagrantize') ?>
 	</p>
 	<ol>
-		<li><a href="#s-export"><?php _e('Export The Database', 'wp-vagrantize') ?></a></li>
+		<li><a href="#s-export"><?php _e('Export A Database', 'wp-vagrantize') ?></a></li>
 		<li><a href="#s-customize"><?php _e('Customize Settings', 'wp-vagrantize') ?></a></li>
-		<li><a href="#s-download"><?php _e('Download Your Recipe', 'wp-vagrantize') ?></a></li>
-		<li><a href="#s-create"><?php _e('Create A VM From The Provisioner', 'wp-vagrantize') ?></a></li>
+		<li><a href="#s-download"><?php _e('Download A Provisioner', 'wp-vagrantize') ?></a></li>
+		<li><a href="#s-vagrant-up"><?php _e('Vagrant Up', 'wp-vagrantize') ?></a></li>
 	</ol>
 	<hr/>
 
-	<h3 id="s-export"><?php _e('Export The Database', 'wp-vagrantize') ?></h3>
+	<h3 id="s-export"><?php _e('Export A Database', 'wp-vagrantize') ?></h3>
 	<form id="export-form" action="" method="post">
 		<p class="submit">
 			<?php submit_button(__('Export'), 'primary', 'export', false) ?>
@@ -43,7 +43,7 @@
 	</form>
 	<hr/>
 
-	<h3 id="s-download"><?php _e('Download Provisioner', 'wp-vagrantize') ?></h3>
+	<h3 id="s-download"><?php _e('Download A Provisioner', 'wp-vagrantize') ?></h3>
 	<form id="download-form" action="" method="post">
 		<p class="submit">
 			<?php submit_button(__('Download'), 'primary', 'download', false) ?>
@@ -52,17 +52,17 @@
 	</form>
 	<hr/>
 
-	<h3 id="s-create"><?php _e('Create A VM From The Provisioner', 'wp-vagrantize') ?></h3>
+	<h3 id="s-vagrant-up"><?php _e('Vagrant Up', 'wp-vagrantize') ?></h3>
 	<ol>
-		<li><?php _e('Extract the recipe into any directory you like', 'wp-vagrantize') ?></li>
+		<li><?php _e('Extract the provisioner into your working directory', 'wp-vagrantize') ?></li>
 		<li><p><?php _e('Open Terminal.app or cmd.exe', 'wp-vagrantize') ?></p></li>
 		<li>
-			<p><?php _e('Type following commands', 'wp-vagrantize') ?></p>
+			<p><?php _e('Type the following commands', 'wp-vagrantize') ?></p>
 			<pre class="code">
-cd /path/to/your/recipe
+cd /path/to/provisioner
 vagrant up
 			</pre>
-			<p><?php _e('Then massive console logs start to flowing', 'wp-vagrantize') ?></p>
+			<p><?php _e('Then the provision starts and You’ll see massive console logs…', 'wp-vagrantize') ?></p>
 		</li>
 		<li>
 			<p>
@@ -71,4 +71,12 @@ vagrant up
 			</p>
 		</li>
 	</ol>
+	<hr/>
+
+	<h3>For more details, see:</h3>
+	<ul>
+		<li><a href="https://github.com/amekusa/ReWP">github.com/amekusa/<strong>ReWP</strong></a></li>
+		<li><a href="https://github.com/vccw-team/vccw">github.com/vccw-team/<strong>VCCW</strong></a></li>
+		<li><a href="https://docs.vagrantup.com/v2/getting-started/index.html">Getting Started - <strong>Vagrant</strong> Documentation</a></li>
+	</ul>
 </div>

@@ -1,6 +1,6 @@
 === WP Vagrantize ===
 Contributors: amekusa
-Tags: vagrant
+Tags: vagrant, development
 Requires at least: 3.5.2
 Tested up to: 3.5.2
 Stable tag: 4.3
