@@ -63,11 +63,18 @@ class MenuScreen {
 			}),
 
 			new AjaxAction('download', function () use($rewp) {
-				$dest = WP_VAGRANTIZE_HOME . 'downloads/vagrant-me-up.' . date('YmdHis') . '.zip';
+				$name = $rewp->getData('hostname');
+				if (!$name) $name = $rewp->getData('ip');
+				if (!$name) $name = 'vagrantme.up';
+				$name = preg_replace('/^[^a-zA-Z0-9_-]+/', '', $name);
+				$name = preg_replace('/[^a-zA-Z0-9_-]+$/', '', $name);
+				$name = preg_replace('/[^a-zA-Z0-9_.-]/', '_', $name);
+
+				$dest = WP_VAGRANTIZE_HOME . "downloads/{$name}." . date('YmdHis') . '.zip';
 
 				$zip = new \ZipArchiveEx();
 				$zip->open($dest, \ZipArchive::OVERWRITE);
-				$zip->addDir($rewp->getPath());
+				$zip->addDirContents($rewp->getPath());
 				$zip->close();
 
 				$time = filemtime($dest);

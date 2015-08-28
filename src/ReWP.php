@@ -29,7 +29,10 @@ class ReWP {
 		return $this->parser;
 	}
 
-	public function getData() {
+	public function getData($xKey = null) {
+		if (isset($xKey) && is_array($this->data))
+			return array_key_exists($xKey, $this->data) ? $this->data[$xKey] : null;
+
 		return $this->data;
 	}
 
