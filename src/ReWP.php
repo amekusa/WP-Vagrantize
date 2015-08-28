@@ -29,7 +29,10 @@ class ReWP {
 		return $this->parser;
 	}
 
-	public function getData() {
+	public function getData($xKey = null) {
+		if (isset($xKey) && is_array($this->data))
+			return array_key_exists($xKey, $this->data) ? $this->data[$xKey] : null;
+
 		return $this->data;
 	}
 
@@ -47,7 +50,6 @@ class ReWP {
 			'title' => get_bloginfo('name'),
 			'multisite' => is_multisite(),
 			'admin_user' => $this->getUser()->user_login,
-			'admin_pass' => '',
 			'db_prefix' => $GLOBALS['wpdb']->prefix,
 			'db_host' => DB_HOST,
 			'db_name' => DB_NAME,
