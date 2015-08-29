@@ -11,18 +11,25 @@ A smart way to reproduce your blog into the local machine
 
 == Description ==
 
-**WP Vagrantize** provides quick, easy and efficiant way to build **local development environment** for you WordPress site.
+WP Vagrantize provides quick, easy and efficiant way to build local development environment for your WordPress site.
+
+In *Tools* menu, you can customize and download a Vagrant provisioning file which contains a `Vagrantfile`.
+If you are an administrator, you can also export a database, and Vagrant imports it automatically when provisioning.
 
 == Installation ==
 
 You can install WP Vagrantize in the ordinary way.
 
-== How to use ==
-
+= How to use =
 1. In the admin, navigate into *Tools* > *WP Vagrantize*
 2. Follow the instruction of the page
 3. Unzip the file you downloaded
 4. `vagrant` it `up`
+
+== Screenshots ==
+
+1. Exporting a DB by a single click
+2. Downloading a provisioning file as .ZIP
 
 == Changelog ==
 
