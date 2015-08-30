@@ -26,6 +26,10 @@ You can install WP Vagrantize in the ordinary way.
 3. Unzip the file you downloaded
 4. `vagrant` it `up`
 
+= Prerequisites =
+1. [Oracle VM VirtualBox](https://www.virtualbox.org/) or [VMware Fusion](http://www.vmware.com/products/fusion)
+2. [Vagrant](https://www.vagrantup.com/)
+
 == Screenshots ==
 
 1. Exporting a DB by a single click
@@ -33,5 +37,5 @@ You can install WP Vagrantize in the ordinary way.
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 Initial release
