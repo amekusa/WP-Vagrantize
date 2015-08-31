@@ -7,20 +7,10 @@
 		<?php _e('Follow the steps below.', 'wp-vagrantize') ?>
 	</p>
 	<ol>
-		<li><a href="#s-export"><?php _e('Export A Database', 'wp-vagrantize') ?></a></li>
 		<li><a href="#s-customize"><?php _e('Customize Settings', 'wp-vagrantize') ?></a></li>
 		<li><a href="#s-download"><?php _e('Download A Provisioner', 'wp-vagrantize') ?></a></li>
 		<li><a href="#s-vagrant-up"><?php _e('Vagrant Up', 'wp-vagrantize') ?></a></li>
 	</ol>
-	<hr/>
-
-	<h3 id="s-export"><?php _e('Export A Database', 'wp-vagrantize') ?></h3>
-	<form id="export-form" action="" method="post">
-		<p class="submit">
-			<?php submit_button(__('Export'), 'primary', 'export', false) ?>
-			<i class="spinner"></i>
-		</p>
-	</form>
 	<hr/>
 
 	<h3 id="s-customize"><?php _e('Customize Settings', 'wp-vagrantize') ?></h3>
@@ -44,6 +34,10 @@
 	<hr/>
 
 	<h3 id="s-download"><?php _e('Download A Provisioner', 'wp-vagrantize') ?></h3>
+	<p>
+		If <var>import_sql</var> is <var>true</var> (default) in the settings above, <strong>a database will be exported</strong> into a downloaded file.<br/>
+		The exported database will be imported into a virtual machine automatically when you provision.
+	</p>
 	<form id="download-form" action="" method="post">
 		<p class="submit">
 			<?php submit_button(__('Download'), 'primary', 'download', false) ?>
@@ -67,7 +61,7 @@ vagrant up
 		<li>
 			<p>
 				<?php _e('If the operation finished without an error, all done!', 'wp-vagrantize') ?><br/>
-				Go to the address where you specified as <var>ip</var> or <var>hostname</var> (‘hosts’ setting required) in <a href="#s-customize">‘Customize’</a> section.
+				Go to the address where you specified as <var>ip</var> or <var>hostname</var> (hosts setting required) in <a href="#s-customize">Customize</a> section.
 			</p>
 		</li>
 	</ol>

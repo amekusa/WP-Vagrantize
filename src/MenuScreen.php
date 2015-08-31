@@ -47,21 +47,6 @@ class MenuScreen {
 				wp_send_json_success(ob_get_clean());
 			}),
 
-			new AjaxAction('exportDB', function () use($rewp) {
-				$dest = '';
-				try {
-					$dest = $rewp->exportDB();
-				} catch (\Exception $e) {
-					wp_send_json_error($e->getMessage());
-				}
-				$time = filemtime($dest);
-				wp_send_json_success(array (
-					'file' => $dest,
-					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
-					'datetime' => date(DATE_W3C, $time)
-				));
-			}),
-
 			new AjaxAction('download', function () use($rewp) {
 				$name = $rewp->getData('hostname');
 				if (!$name) $name = $rewp->getData('ip');
@@ -70,17 +55,23 @@ class MenuScreen {
 				$name = preg_replace('/[^a-zA-Z0-9_-]+$/', '', $name);
 				$name = preg_replace('/[^a-zA-Z0-9_.-]/', '_', $name);
 
-				$dest = WP_VAGRANTIZE_HOME . "downloads/{$name}." . date('YmdHis') . '.zip';
+				$dest = WP_VAGRANTIZE_HOME . ".exports/{$name}." . date('YmdHis') . '.zip';
 
 				$zip = new \ZipArchiveEx();
 				$zip->open($dest, \ZipArchive::OVERWRITE);
 				$zip->addDirContents($rewp->getPath());
+				$db = '';
+				if ($rewp->getData('import_sql')) {
+					$db = $rewp->exportDB(WP_VAGRANTIZE_HOME . '.exports');
+					$zip->addFile($db, basename($db));
+				}
 				$zip->close();
+				if ($db) unlink($db);
 
 				$time = filemtime($dest);
 				wp_send_json_success(array (
 					'file' => $dest,
-					'fileUrl' => WP_VAGRANTIZE_URL . 'downloads/' . basename($dest),
+					'fileUrl' => WP_VAGRANTIZE_URL . 'download.php?file=' . basename($dest),
 					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
 					'datetime' => date(DATE_W3C, $time)
 				));
