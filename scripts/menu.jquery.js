@@ -5,7 +5,6 @@ jQuery(document).ready(function($) {
 
 		main: function() {
 			this.forms.customize.render();
-			this.forms.exp0rt.activate();
 			this.forms.download.activate();
 		},
 
@@ -78,52 +77,6 @@ jQuery(document).ready(function($) {
 				var form = app.nodes.require('form');
 				var fields = app.nodes.find(':input[name][value]', form);
 				if (fields) fields.attr('disabled', 'disabled');
-			},
-
-			exp0rt: {
-				context: 'form#export-form',
-				isActive: false,
-				activate: function() {
-					if (this.isActive) return;
-					var self = this;
-					var form = app.nodes.require(this.context);
-					var button = app.nodes.require(':submit[name]', form);
-					button.on('click', app.forms.buttons.onClick);
-
-					form.on('submit', function(ev) {
-						ev.preventDefault(); // Abort browser-native submission
-						var submit = app.nodes.require(':input[name="submit"][value]', this);
-						var spinner = app.nodes.find('.spinner', this);
-						if (spinner) spinner.addClass('active');
-						app.forms.deactivate();
-
-						switch (submit.attr('value')) {
-						case 'export':
-							$.ajax($.extend(
-								true,
-								actions.exportDB,
-								{context: form}
-							))
-							.always(function(response) {
-								app.forms.activate();
-								if (spinner) spinner.removeClass('active');
-							})
-							.fail(function(request, status, error) {
-								$.error('WP Vagrantize: Request failed with status: ' + status);
-							})
-							.done(function(response) {
-								this.append(app.nodes.compose.notice(
-									'Exported to <strong class="code">' + response.data.file
-									+ '</strong> @ <time datetime="' + response.data.datetime + '">'
-									+ response.data.date + '</time>', 'notice-success'
-								));
-							});
-							break;
-						}
-					});
-
-					this.isActive = true;
-				}
 			},
 
 			customize: {

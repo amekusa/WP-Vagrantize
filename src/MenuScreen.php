@@ -47,21 +47,6 @@ class MenuScreen {
 				wp_send_json_success(ob_get_clean());
 			}),
 
-			new AjaxAction('exportDB', function () use($rewp) {
-				$dest = '';
-				try {
-					$dest = $rewp->exportDB();
-				} catch (\Exception $e) {
-					wp_send_json_error($e->getMessage());
-				}
-				$time = filemtime($dest);
-				wp_send_json_success(array (
-					'file' => $dest,
-					'date' => date(get_option('time_format') . ', ' . get_option('date_format'), $time),
-					'datetime' => date(DATE_W3C, $time)
-				));
-			}),
-
 			new AjaxAction('download', function () use($rewp) {
 				$name = $rewp->getData('hostname');
 				if (!$name) $name = $rewp->getData('ip');
