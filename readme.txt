@@ -37,5 +37,8 @@ You can install WP Vagrantize in the ordinary way.
 
 == Changelog ==
 
+= 1.1.0 =
+Integrate DB exporting feature into download
+
 = 1.0.0 =
 Initial release
