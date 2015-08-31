@@ -55,14 +55,14 @@ class MenuScreen {
 				$name = preg_replace('/[^a-zA-Z0-9_-]+$/', '', $name);
 				$name = preg_replace('/[^a-zA-Z0-9_.-]/', '_', $name);
 
-				$dest = WP_VAGRANTIZE_HOME . ".tmp/{$name}." . date('YmdHis') . '.zip';
+				$dest = WP_VAGRANTIZE_HOME . ".exports/{$name}." . date('YmdHis') . '.zip';
 
 				$zip = new \ZipArchiveEx();
 				$zip->open($dest, \ZipArchive::OVERWRITE);
 				$zip->addDirContents($rewp->getPath());
 				$db = '';
 				if ($rewp->getData('import_sql')) {
-					$db = $rewp->exportDB(WP_VAGRANTIZE_HOME . '.tmp');
+					$db = $rewp->exportDB(WP_VAGRANTIZE_HOME . '.exports');
 					$zip->addFile($db, basename($db));
 				}
 				$zip->close();

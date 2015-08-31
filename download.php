@@ -10,7 +10,7 @@
 if (!array_key_exists('file', $_GET)) return;
 if (!$_GET['file'] || !is_string($_GET['file'])) return;
 
-$dir = __DIR__ . '/.tmp';
+$dir = __DIR__ . '/.exports';
 $file = realpath($dir . '/' . ltrim($_GET['file'], '/'));
 
 if (!$file) return;
