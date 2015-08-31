@@ -61,7 +61,7 @@ vagrant up
 		<li>
 			<p>
 				<?php _e('If the operation finished without an error, all done!', 'wp-vagrantize') ?><br/>
-				Go to the address where you specified as <var>ip</var> or <var>hostname</var> (‘hosts’ setting required) in <a href="#s-customize">‘Customize’</a> section.
+				Go to the address where you specified as <var>ip</var> or <var>hostname</var> (hosts setting required) in <a href="#s-customize">Customize</a> section.
 			</p>
 		</li>
 	</ol>
