@@ -9,6 +9,19 @@ hr {
 	margin-bottom: 36px;
 }
 
+var {
+	display: inline-block;
+	margin-left: .25em;
+	margin-right: .25em;
+	padding-left: .5em;
+	padding-right: .5em;
+	border: 1px dashed #ddd;
+	border-radius: 4px;
+	background-color: #f9f9f9;
+	font-family: Consolas, Monaco, monospace;
+	font-style: normal;
+}
+
 .spinner {
 	display: none;
 }
