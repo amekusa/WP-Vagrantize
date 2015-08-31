@@ -282,7 +282,15 @@ jQuery(document).ready(function($) {
 									+ '</strong> @ <time datetime="' + response.data.datetime + '">'
 									+ response.data.date + '</time>', 'notice-success'
 								));
-								window.location = response.data.fileUrl;
+								// Download the file
+								this.append($('<iframe>').attr({
+									id: 'downloader',
+									src: response.data.fileUrl,
+									style: 'display:none'
+								}));
+								setTimeout(function() {
+									$('iframe#downloader').remove();
+								}, 300);
 							});
 							break;
 						}
