@@ -32,8 +32,8 @@ You can install WP Vagrantize in the ordinary way.
 
 ## Screenshots ##
 
-1. Exporting a DB by a single click
-2. Downloading a provisioning file as .ZIP
+1. Customizing settings of a virtual machine ![Screenshot 1](screenshot-1.png)
+2. ![Screenshot 2](screenshot-2.png) Downloading a provisioning file as a ZIP
 
 ## Changelog ##
 
