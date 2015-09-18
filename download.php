@@ -2,8 +2,13 @@
 
 /**
  * 1 time file downloader
- * Deletes the file after user downloaded it.
+ *
+ * Deletes the requested file after an user downloaded it.
  */
+
+@ini_set('memory_limit', '2048M');
+@ini_set('max_execution_time', 0);
+@ini_set('zlib.output_compression', 'Off');
 
 // Validation
 
@@ -13,26 +18,35 @@ if (!$_GET['file'] || !is_string($_GET['file'])) return;
 $dir = __DIR__ . '/.exports';
 $file = realpath($dir . '/' . ltrim($_GET['file'], '/'));
 
+//// Does the file exist?
 if (!$file) return;
 
-//// Directory check
+//// Is the file actually a file?
+if (!is_file($file)) return;
+
+//// Is the file located on a correct place?
 if (!preg_match('/^' . preg_quote($dir, '/') . '/', $file)) return;
 
-// Do download
+//// Is the file readable?
+if (!is_readable($file)) return;
 
-@ini_set('memory_limit', '2048M');
-@ini_set('max_execution_time', 0);
+// Download
 
+header('Accept-Ranges: bytes');
 header('Content-Description: File Transfer');
-header('Content-Type: application/force-download');
-header('Content-Disposition: attachment; filename=' . basename($file));
+header('Content-Disposition: attachment; filename="' . basename($file) . '"');
 header('Content-Transfer-Encoding: binary');
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Pragma: public');
 header('Content-Length: ' . filesize($file));
+
+$type = 'application/octet-stream';
+switch (pathinfo($file, PATHINFO_EXTENSION)) {
+case 'zip':
+	$type = 'application/zip';
+}
+header('Content-Type: ' . $type);
+
 ob_clean();
 flush();
-readfile($file);
 
-@unlink($file); // Delete the file
+// Outputs the file content, and deletes it immediately
+if (readfile($file) !== false) @unlink($file);
