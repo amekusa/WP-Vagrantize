@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: WP Vagrantize
- Version: 1.1.0
+ Version: 1.1.1
  Description: A smart way to reproduce your blog into the local machine
  Author: Satoshi Soma a.k.a amekusa
  Author URI: https://github.com/amekusa

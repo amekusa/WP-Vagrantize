@@ -37,6 +37,9 @@ You can install WP Vagrantize in the ordinary way.
 
 == Changelog ==
 
+= 1.1.1 =
+* Fix some downloader issues
+
 = 1.1.0 =
 * Integrate DB exporting feature into download
 * Enhance security
@@ -45,6 +48,9 @@ You can install WP Vagrantize in the ordinary way.
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+Fix some downloader issues
 
 = 1.1.0 =
 Security enhancements
