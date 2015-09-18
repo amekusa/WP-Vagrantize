@@ -217,6 +217,9 @@ jQuery(document).ready(function($) {
 
 						switch (submit.attr('value')) {
 						case 'download':
+							var downloader = app.nodes.find('#downloader', form);
+							if (downloader) downloader.remove();
+
 							$.ajax($.extend(
 								true,
 								actions.download,
@@ -235,15 +238,12 @@ jQuery(document).ready(function($) {
 									+ '</strong> @ <time datetime="' + response.data.datetime + '">'
 									+ response.data.date + '</time>', 'notice-success'
 								));
-								// Download the file
+
 								this.append($('<iframe>').attr({
 									id: 'downloader',
 									src: response.data.fileUrl,
 									style: 'display:none'
 								}));
-								setTimeout(function() {
-									$('iframe#downloader').remove();
-								}, 300);
 							});
 							break;
 						}
