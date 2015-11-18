@@ -1,6 +1,6 @@
 {
   "name": "wp-vagrantize",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "description",
   "main": "wp-vagrantize.php",
   "moduleType": [

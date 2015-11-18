@@ -5,6 +5,7 @@
 			"email" : "post@amekusa.com"
 		}
 	],
+	"version" : "1.2.0",
 	"repositories" : [{
 			"type" : "vcs",
 			"url" : "https://github.com/amekusa/ReWP.git"
