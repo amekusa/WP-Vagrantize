@@ -36,47 +36,6 @@
         "homepage": "https://github.com/interconnectit/Search-Replace-DB"
     },
     {
-        "name": "amekusa/ReWP",
-        "version": "1.5.1",
-        "version_normalized": "1.5.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/amekusa/ReWP.git",
-            "reference": "7bc31adf89c8512cca1d7ac4bd9bd3455f60c537"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/amekusa/ReWP/zipball/7bc31adf89c8512cca1d7ac4bd9bd3455f60c537",
-            "reference": "7bc31adf89c8512cca1d7ac4bd9bd3455f60c537",
-            "shasum": ""
-        },
-        "require": {
-            "interconnectit/search-replace-db": "~3.0"
-        },
-        "time": "2015-08-27 16:58:29",
-        "type": "vagrant-provisioner",
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "amekusa",
-                "email": "post@amekusa.com"
-            }
-        ],
-        "description": "A smart way to rebuild your WordPress site into the local machine",
-        "homepage": "https://github.com/amekusa/ReWP",
-        "keywords": [
-            "vagrant",
-            "wordpress"
-        ],
-        "support": {
-            "source": "https://github.com/amekusa/ReWP/tree/1.5.1",
-            "issues": "https://github.com/amekusa/ReWP/issues"
-        }
-    },
-    {
         "name": "codeless/logmore",
         "version": "v0.9.0",
         "version_normalized": "0.9.0.0",
@@ -256,5 +215,46 @@
             "yaml",
             "yml"
         ]
+    },
+    {
+        "name": "amekusa/ReWP",
+        "version": "1.7.1",
+        "version_normalized": "1.7.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amekusa/ReWP.git",
+            "reference": "e3ff0cec5add4e8ba8d95420348d84ddf605176f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amekusa/ReWP/zipball/e3ff0cec5add4e8ba8d95420348d84ddf605176f",
+            "reference": "e3ff0cec5add4e8ba8d95420348d84ddf605176f",
+            "shasum": ""
+        },
+        "require": {
+            "interconnectit/search-replace-db": "~3.0"
+        },
+        "time": "2015-11-18 07:14:58",
+        "type": "vagrant-provisioner",
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "amekusa",
+                "email": "post@amekusa.com"
+            }
+        ],
+        "description": "A smart way to rebuild your WordPress site into the local machine",
+        "homepage": "https://github.com/amekusa/ReWP",
+        "keywords": [
+            "vagrant",
+            "wordpress"
+        ],
+        "support": {
+            "source": "https://github.com/amekusa/ReWP/tree/1.7.1",
+            "issues": "https://github.com/amekusa/ReWP/issues"
+        }
     }
 ]

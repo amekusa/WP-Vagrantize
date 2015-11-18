@@ -37,6 +37,10 @@ You can install WP Vagrantize in the ordinary way.
 
 ## Changelog ##
 
+### 1.2.0 ###
+* Upgrade ReWP to 1.7.1 that is compatible with VCCW 2.17.0
+* Update internal libraries
+
 ### 1.1.1 ###
 * Fix some downloader issues
 
@@ -48,6 +52,9 @@ You can install WP Vagrantize in the ordinary way.
 * Initial release
 
 ## Upgrade Notice ##
+
+### 1.2.0 ###
+Upgrade ReWP to 1.7.1 that is compatible with VCCW 2.17.0
 
 ### 1.1.1 ###
 Fix some downloader issues
