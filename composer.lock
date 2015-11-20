@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a39e67f7834c2b23860285f8fe78e72",
-    "content-hash": "2d7fc34957980f14048fcc9c5866a9d6",
+    "hash": "608d495f14d46f27ab29e0eac028fada",
+    "content-hash": "75fe63791a104806f05042e6ad66c27f",
     "packages": [
         {
             "name": "amekusa/ReWP",
@@ -45,6 +45,41 @@
                 "issues": "https://github.com/amekusa/ReWP/issues"
             },
             "time": "2015-11-18 07:14:58"
+        },
+        {
+            "name": "amekusa/wpelib",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amekusa/WPELib.git",
+                "reference": "8502a5aa5943d9b61220eb1cd8686ea472e03ab4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amekusa/WPELib/zipball/8502a5aa5943d9b61220eb1cd8686ea472e03ab4",
+                "reference": "8502a5aa5943d9b61220eb1cd8686ea472e03ab4",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "amekusa\\WPELib\\": "src/"
+                },
+                "files": [
+                    "src/main.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "amekusa",
+                    "email": "post@amekusa.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/amekusa/WPELib/tree/develop",
+                "issues": "https://github.com/amekusa/WPELib/issues"
+            },
+            "time": "2015-11-20 10:39:27"
         },
         {
             "name": "codeless/logmore",
@@ -257,7 +292,9 @@
     "packages-dev": null,
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "amekusa/wpelib": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
